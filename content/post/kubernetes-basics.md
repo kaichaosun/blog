@@ -6,13 +6,15 @@ title: Kubernets basics
 ## Background & why k8s
 
 ### Container
-Container has become poplular in recent years. There are a few container standard, like Docker, [rkt](https://coreos.com/rkt/). The advantages by using container technology:
-* clean and consistent execution environment across local, staging and production.
+Container has become poplular in recent years. There are a few container standard, like Docker, [rkt](https://coreos.com/rkt/). The advantages by using container technology:  
+
+* clean and consistent execution environment across local, staging and production.  
 * resource isolation between apps.
 
 ### Cluster
-With sofiscated containers apps in use, we need a way to scale and manage the containers, then container orchestrator comes out, like:
-* kubernetes
+With sofiscated containers apps in use, we need a way to scale and manage the containers, then container orchestrator comes out, like:  
+
+* kubernetes  
 * docker swarm
 
 > Kubernetes is a Container Orchestrator, that abstracts the underlying infrastructure (where the container are run).
