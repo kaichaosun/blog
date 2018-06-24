@@ -1,20 +1,35 @@
 ---
 date: 2018-06-21
-title: Kubernets basics
+title: Kubernetes basics
 ---
+
+- [Background & why k8s](#background-why-k8s)
+	- [Container](#container)
+	- [Cluster](#cluster)
+- [Elements in k8s](#elements-in-k8s)
+- [Practice](#practice)
+		- [Install kubectl](#install-kubectl)
+		- [Use docker for Mac edge](#use-docker-for-mac-edge)
+		- [Use minikube](#use-minikube)
+	- [Common used command](#common-used-command)
+	- [Access the dashboard](#access-the-dashboard)
+	- [Run sample container](#run-sample-container)
+	- [Pod definition](#pod-definition)
+- [References](#references)
+
 
 ## Background & why k8s
 
 ### Container
 Container has become poplular in recent years. There are a few container standard, like Docker, [rkt](https://coreos.com/rkt/). The advantages by using container technology:  
-		
+
 * Clean and consistent execution environment across local, staging and production.    
 * Resource isolation between apps.
 * Born for mircroservices application design pattern.     
 
 ### Cluster
 With sofiscated containers apps in use, we need a way to scale and manage the containers, then container orchestrator comes out, like:  
-		
+
 * kubernetes    
 * docker swarm  
 
@@ -29,7 +44,9 @@ Why use k8s such thing:
 ## Elements in k8s
 * API server: the way to interact with k8s cluster.
 * Kubelet: monitor containers in a node, communicate with master node.
-* Pods: Pods can be composed of one or a group of containers that share the same execution environment.
+
+### Pods
+Pods can be composed of one or a group of containers that share the same execution environment.
 
 ![Pod properties]()
 
@@ -37,22 +54,27 @@ Features of pods:
 
 * Each pod has a unique IP address in the k8s cluster.     
 * Pod can have multiple containers    
-* Containers in the same pod share volume, ip, port space, IPC namespace.    
+* Containers in the same pod share volume, ip, port space, IPC namespace.   
+ 
+### Deployments
+
+
+### Services
 
 ## Practice
-#### Install kubectl
+### Install kubectl
 Install kubectl on macOS:
 ```
 brew install kubectl
 ```
 Check the installation by using `kubectl version`
 
-#### Use docker for Mac edge
+### Use docker for Mac edge
 The edge version of docker for mac, provides k8s integration, you need to [download](https://store.docker.com/editions/community/docker-ce-desktop-mac) it, and enable the k8s feature.
 
 ![enable-k8s-edge](/static/k8s/enable-k8s-edge.png)
 
-Check kubectl are using docker-for-desktop: 
+Check kubectl are using docker-for-desktop:
 ```
 kubectl config current-context
 ```
@@ -60,9 +82,9 @@ If not, switch to it `kubectl config use-context docker-for-desktop`.
 
 If you are using docker edge to play with k8s, you could skip the section about `minikube`.
 
-#### [Use minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
+### Use minikube
 
-Minikube is a tool to run k8s locally. I have bad experience when using minikube.
+[Minikube]((https://kubernetes.io/docs/tasks/tools/install-minikube/)) is a tool to run k8s locally. I have bad experience when using minikube.
 
 Install minikube:
 ```
@@ -76,7 +98,7 @@ minikube delete
 rm -rf ~/.minikube
 ```
 
-### Common used command:    
+### Common used commands    
 * `kubectl cluster-info`    
 * `kubectl get pods`    
 * `kubectl get nodes`   
@@ -115,7 +137,7 @@ Want to access the Nginx? Remember to forward the port first.
 ```
 kubectl get pods # show all the pods
 kubectl port-forward hello-nginx-6f9f4fc7dd-6wzlp 8080:80 # forward one of the pods
-``` 
+```
 
 Scala the service:
 ```
@@ -138,7 +160,7 @@ metadata:
   name: hello-world                                 
 spec:                                                
   containers:
-    - image: rinormaloku/sentiment-analysis-frontend 
+    - image: rinormaloku/sentiment-analysis-frontend
       name: sa-frontend                              
       ports:
         - containerPort: 80   
@@ -150,4 +172,3 @@ spec:
 3. Setup in local: https://gist.github.com/kevin-smets/b91a34cea662d0c523968472a81788f7
 4. Survive from GFW: https://github.com/denverdino/k8s-for-docker-desktop
 5. K8s with docker edge: https://rominirani.com/tutorial-getting-started-with-kubernetes-with-docker-on-mac-7f58467203fd
-
