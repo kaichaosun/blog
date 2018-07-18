@@ -3,24 +3,10 @@ date: 2018-06-21
 title: Kubernetes basics
 ---
 
-- [Background & why k8s](#background-why-k8s)
-	- [Container](#container)
-	- [Cluster](#cluster)
-- [Elements in k8s](#elements-in-k8s)
-- [Practice](#practice)
-		- [Install kubectl](#install-kubectl)
-		- [Use docker for Mac edge](#use-docker-for-mac-edge)
-		- [Use minikube](#use-minikube)
-	- [Common used command](#common-used-command)
-	- [Access the dashboard](#access-the-dashboard)
-	- [Run sample container](#run-sample-container)
-	- [Pod definition](#pod-definition)
-- [References](#references)
-
-
 ## Background & why k8s
 
 ### Container
+
 Container has become poplular in recent years. There are a few container standard, like Docker, [rkt](https://coreos.com/rkt/). The advantages by using container technology:  
 
 * Clean and consistent execution environment across local, staging and production.    
@@ -28,7 +14,8 @@ Container has become poplular in recent years. There are a few container standar
 * Born for mircroservices application design pattern.     
 
 ### Cluster
-With sofiscated containers apps in use, we need a way to scale and manage the containers, then container orchestrator comes out, like:  
+
+With complex containers apps in use, we need a way to scale and manage the containers, then container orchestrator comes out, like:  
 
 * kubernetes    
 * docker swarm  
@@ -42,27 +29,40 @@ Why use k8s such thing:
 * Manage resources as a whole, reduce costs.
 
 ## Elements in k8s
+
 * API server: the way to interact with k8s cluster.
 * Kubelet: monitor containers in a node, communicate with master node.
+* Pods:   
+* Job: run one off tasks. A Job creates Pods that run until successful termination (i.e., exit with 0)
 
 ### Pods
-Pods can be composed of one or a group of containers that share the same execution environment.
 
-![Pod properties]()
+Can be composed of one or a group of containers that share the same execution environment. Users should not create pods directly, better to use controllers like `Deployments` for self-healing.
 
 Features of pods:     
 
 * Each pod has a unique IP address in the k8s cluster.     
 * Pod can have multiple containers    
 * Containers in the same pod share volume, ip, port space, IPC namespace.   
- 
-### Deployments
 
+
+### Controllers 
+
+**Deployment:**
+
+Declare how many replicas of a pod should be running at same time. When deployment is applied in the cluster, it will automatically spin up the request number of pods. Then monitor them, if a pod dies, the deployment will re-create a new pod to meet the request number.
+
+**Job:**
+
+**ReplicaSet:**
+ 
 
 ### Services
 
 ## Practice
+
 ### Install kubectl
+
 Install kubectl on macOS:
 ```
 brew install kubectl
@@ -70,6 +70,7 @@ brew install kubectl
 Check the installation by using `kubectl version`
 
 ### Use docker for Mac edge
+
 The edge version of docker for mac, provides k8s integration, you need to [download](https://store.docker.com/editions/community/docker-ce-desktop-mac) it, and enable the k8s feature.
 
 ![enable-k8s-edge](/static/k8s/enable-k8s-edge.png)
@@ -166,9 +167,19 @@ spec:
         - containerPort: 80   
 ```
 
+## Using with GCP and AWS
+Google cloud provide GKE.
+ 
+You can simply start a cluster in AWS with [kops](https://github.com/kubernetes/kops)
+
+
+
+
 ## References
-1. https://medium.freecodecamp.org/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882
-2. Serverless Kubernetes with OpenFaaS: https://github.com/openfaas/faas-netes
-3. Setup in local: https://gist.github.com/kevin-smets/b91a34cea662d0c523968472a81788f7
-4. Survive from GFW: https://github.com/denverdino/k8s-for-docker-desktop
-5. K8s with docker edge: https://rominirani.com/tutorial-getting-started-with-kubernetes-with-docker-on-mac-7f58467203fd
+https://medium.freecodecamp.org/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882  
+https://github.com/openfaas/faas-netes  
+https://gist.github.com/kevin-smets/b91a34cea662d0c523968472a81788f7  
+https://github.com/denverdino/k8s-for-docker-desktop  
+https://rominirani.com/tutorial-getting-started-with-kubernetes-with-docker-on-mac-7f58467203fd   
+https://medium.com/google-cloud/kubernetes-110-your-first-deployment-bf123c1d3f8   
+https://github.com/kubernetes-incubator/kubespray/blob/master/docs/comparisons.md   
