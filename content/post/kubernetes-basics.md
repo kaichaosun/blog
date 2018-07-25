@@ -5,6 +5,8 @@ title: Kubernetes basics
 
 ## Background & why k8s
 
+### Micro services
+
 ### Container
 
 Container has become poplular in recent years. There are a few container standard, like Docker, [rkt](https://coreos.com/rkt/). The advantages by using container technology:  
@@ -46,16 +48,64 @@ Features of pods:
 * Containers in the same pod share volume, ip, port space, IPC namespace.   
 
 
-### Controllers 
+### Controllers
 
 **Deployment:**
 
 Declare how many replicas of a pod should be running at same time. When deployment is applied in the cluster, it will automatically spin up the request number of pods. Then monitor them, if a pod dies, the deployment will re-create a new pod to meet the request number.
 
+Define a Deployment:  
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.9.1
+        ports:
+        - containerPort: 80
+
+```
+
+Run command:  
+```
+kubectl create -f ./nginx-deployment.yml --record
+
+kubectl get deployments
+
+kubectl set image deployment/nginx-deployment nginx=nginx:1.9.1
+
+kubectl describe deployments
+
+kubectl rollout history deployment/nginx-deployment
+
+kubectl rollout undo deployment/nginx-deployment  // optional --to-revision=2
+
+// scale deployment
+kubectl scale deployment nginx-deployment --replicas=5
+kubectl autoscale deployment nginx-deployment --min=3 --max=6 --cpu-percent=80  
+
+kubectl delete deployment nginx-deployment
+
+```
+
 **Job:**
 
 **ReplicaSet:**
- 
+
 
 ### Services
 
@@ -169,7 +219,7 @@ spec:
 
 ## Using with GCP and AWS
 Google cloud provide GKE.
- 
+
 You can simply start a cluster in AWS with [kops](https://github.com/kubernetes/kops)
 
 
@@ -182,4 +232,5 @@ https://gist.github.com/kevin-smets/b91a34cea662d0c523968472a81788f7
 https://github.com/denverdino/k8s-for-docker-desktop  
 https://rominirani.com/tutorial-getting-started-with-kubernetes-with-docker-on-mac-7f58467203fd   
 https://medium.com/google-cloud/kubernetes-110-your-first-deployment-bf123c1d3f8   
-https://github.com/kubernetes-incubator/kubespray/blob/master/docs/comparisons.md   
+https://github.com/kubernetes-incubator/kubespray/blob/master/docs/comparisons.md  
+https://blog.hasura.io/gke-vs-aks-vs-eks-411f080640dc  
