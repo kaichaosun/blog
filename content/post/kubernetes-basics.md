@@ -3,17 +3,34 @@ date: 2018-06-21
 title: Kubernetes basics
 ---
 
-## Background & why k8s
+## Background & why kubernetes
 
 ### Micro services
+Usually we build a single "monolith" application at first time. As the business grows, the app becomes "heavy" and hard to maintain:  
+
+* Improved cost to communicate within different teams;
+* Long enough time to finish the CI pipeline(run the test cases, packages, deployment);
+* Hard to scale;
+* ...
+
+So we need to make big application to be small different services depends on a few principles, that's micro services. But it's not the silver bullet. Since there is never such thing in software development. With more and more micro services:
+
+* Take lots of cost to host all the services;
+* Don't have a standard way to implement the CI/CD;
 
 ### Container
 
-Container has become poplular in recent years. There are a few container standard, like Docker, [rkt](https://coreos.com/rkt/). The advantages by using container technology:  
+Now docker and other container technology comes into our vision. Container has become popular in recent years. There are a few container standard, like Docker, [rkt](https://coreos.com/rkt/). The advantages by using container technology:  
 
 * Clean and consistent execution environment across local, staging and production.    
 * Resource isolation between apps.
-* Born for mircroservices application design pattern.     
+* Born for micro services application design pattern.     
+
+Now we have solved the above questions by leveraging docker. What other problems we got?
+
+* Too many pipelines for each container app;   
+* Containerized app in same VM don't work as well as expected;   
+* Costs still not reduced   
 
 ### Cluster
 
@@ -27,15 +44,28 @@ With complex containers apps in use, we need a way to scale and manage the conta
 K8s通过提供易用的API对底层的架构进行了抽象，调用对应的API请求，就可以完成复杂的基于容器的服务编排和管理。
 
 Why use k8s such thing:
-* Standardized the Cloud Service Providers, like AWS,GCP,etc.
+* Standardized the Cloud Service Providers, like AWS, GCP, etc.
 * Manage resources as a whole, reduce costs.
 
-## Elements in k8s
+## Architecture in kubernetes
+![k8s-architecture](/static/k8s-architecture.png)
 
-* API server: the way to interact with k8s cluster.
-* Kubelet: monitor containers in a node, communicate with master node.
-* Pods:   
-* Job: run one off tasks. A Job creates Pods that run until successful termination (i.e., exit with 0)
+### Master node
+The master node is responsible for the management of the cluster. It response to the admin operations, reflect the configuration in certain worker node, ensure the cluster state is as expected. Master node contains following components:
+
+* API server: the way to interact with k8s cluster through REST requests.
+* etcd: key-value store, used for all cluster data.
+* scheduler: watch newly created pods, select a node for them.
+* controller-manager: runs controllers (one of concepts in k8s)
+* cloud-controller-manager: runs controllers that interact with the underlying cloud providers. Details refer [here](https://kubernetes.io/docs/concepts/overview/components/)
+
+
+
+### Worker node
+* Kubelet: monitor containers in a worker node, communicate with master node.
+
+
+## Useful services
 
 ### Pods
 
@@ -46,7 +76,6 @@ Features of pods:
 * Each pod has a unique IP address in the k8s cluster.     
 * Pod can have multiple containers    
 * Containers in the same pod share volume, ip, port space, IPC namespace.   
-
 
 ### Controllers
 
@@ -104,10 +133,13 @@ kubectl delete deployment nginx-deployment
 
 **Job:**
 
+Run one off tasks. A Job creates Pods that run until successful termination (i.e., exit with 0)
+
 **ReplicaSet:**
 
 
 ### Services
+K8s services is an abstraction which defines a set of pods and how to access them.
 
 ## Practice
 
@@ -234,3 +266,4 @@ https://rominirani.com/tutorial-getting-started-with-kubernetes-with-docker-on-m
 https://medium.com/google-cloud/kubernetes-110-your-first-deployment-bf123c1d3f8   
 https://github.com/kubernetes-incubator/kubespray/blob/master/docs/comparisons.md  
 https://blog.hasura.io/gke-vs-aks-vs-eks-411f080640dc  
+https://x-team.com/blog/introduction-kubernetes-architecture/  
