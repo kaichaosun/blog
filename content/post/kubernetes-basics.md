@@ -62,7 +62,12 @@ The master node is responsible for the management of the cluster. It response to
 
 
 ### Worker node
-* Kubelet: monitor containers in a worker node, communicate with master node.
+
+There are a few components running on every worker node.
+
+* kubelet: makes sure that the containers are running as expected in a worker node.
+* kube-proxy: enables the k8s service abstraction by maintaining network rules on the host and performing connection forwarding.
+* Container Runtime: responsible for running containers, like Docker, rkt.
 
 
 ## Useful services
