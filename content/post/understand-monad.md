@@ -46,9 +46,9 @@ A function can be pure or impure. Usually we use pure function in FP as much as 
 
 A short summary is:
 
->* Output depends only on input.
->
->* No side effects
+* Output depends only on input.
+
+* No side effects
 
 What can be done if we don't read any inputs and write any outputs?
 
@@ -108,7 +108,7 @@ Following steps show the way to use free monad provides by cats library (need to
 
 1. Create custome ADT to represent the operation:
 
-2. ````
+   ````
    sealed trait KVStoreA[A]
    
    case class Put[T](key: String, value: T) extends KVStoreA[Unit]
@@ -125,28 +125,28 @@ Following steps show the way to use free monad provides by cats library (need to
    type KVStore[A] = Free[KVStoreA, A]
    ```
 
-3.  Using **liftF** Create DSL related functions which return above free monad:
+3. Using **liftF** Create DSL related functions which return above free monad:
 
    ```
    import cats.free.Free.liftF
-   
+      
    // Put returns nothing (i.e. Unit).
    def put[T](key: String, value: T): KVStore[Unit] =
      liftF[KVStoreA, Unit](Put[T](key, value))
-   
+      
    // Get returns a T value.
    def get[T](key: String): KVStore[Option[T]] =
      liftF[KVStoreA, Option[T]](Get[T](key))
-   
+      
    // Delete returns nothing (i.e. Unit).
    def delete(key: String): KVStore[Unit] =
      liftF(Delete(key))
-   
+      
    // Update composes get and set, and returns nothing.
    def update[T](key: String, f: T => T): KVStore[Unit] =
      for {
        vMaybe <- get[T](key)
-       _ <- vMaybe.map(v => put[T](key, f(v))).getOrElse(Free.pure(()))
+        _ <- vMaybe.map(v => put[T](key, f(v))).getOrElse(Free.pure(()))
      } yield ()
    ```
 
@@ -227,33 +227,75 @@ Usually, we will have a lot of ADTs in the code, but unrelated monad do not comp
 
 ### Why need it
 
+Imagine there is a piece of code to fetch the address of a user by its id:
 
+```
+def findUserById(id: Long): Future[User] = ???
+def findAddressByUser(user: User): Future[Address] = ???
+```
+
+We can use for-comprehension to control the workflow since they share the same context Future and Future has a build-in `flatMap`.
+
+```
+def findAddressByUserId(id: Long): Future[Address] =
+  for {
+    user    <- findUserById(id)
+    address <- findAddressByUser(user)
+  } yield address
+```
+
+There is a situation that we can't find a user if the id is not exist, event the address can be optional for a user.
+
+```
+def findUserById(id: Long): Future[Option[User]] = ???
+def findAddressByUser(user: User): Future[Option[Address]] = ???
+```
+
+Then the workflow need to be changed:
+
+```
+def findAddressByUserId(id: Long): Future[Option[Address]] =
+  findUserById(id).flatMap {
+    case Some(user) => findAddressByUser(user)
+    case None       => Future.successful(None)
+  }
+```
+
+It's working but not as beautiful as previous. Now we comes to monad transformers.
 
 ### How to use
 
+Use **OptionT** provided by cats in for-comprehension:
 
+```
+def findAddressByUserIdOptionT(id: Long): OptionT[Future, Address] =
+  for {
+    user <- OptionT(findUserById(id))
+    address <- OptionT(findAddressByUser(user))
+  } yield address
+```
 
 ### What's the implementation
 
-The definition of OptionT:
+The brief definition of OptionT:
 
 ```
-case class OptionT[F[_], A](run: F[Option[A]]) {
+case class OptionT[F[_], A](value: F[Option[A]]) {
   def map[B](f: A => B)(implicit F: Functor[F]): OptionT[F, B] =
-    OptionT(run.map(_.map(f)))
+    OptionT(value.map(_.map(f)))
 
   def flatMap[B](f: A => OptionT[F, B])(implicit F: Monad[F]): OptionT[F, B] =
-    OptionT(run.flatMap(
-      _.fold(Option.empty[B].point[F])(
-        f andThen ((fa: OptionT[F, B]) => fa.run))))
+    OptionT(value.flatMap(
+      _.fold(Option.empty[B].pure[F])(
+        f andThen ((fa: OptionT[F, B]) => fa.value))))
 }
 object OptionT {
-  def point[F[_]: Applicative, A](a: A): OptionT[F, A] =
-    OptionT(a.point[Option].point[F])
+  def pure[F[_]: Applicative, A](a: A): OptionT[F, A] =
+    OptionT(a.pure[Option].pure[F])
 }
 ```
 
-
+Many monad transformers could be stack unsafe, like `StateT` .
 
 ## Freer Monad / Extensible Effect
 
@@ -275,4 +317,6 @@ object OptionT {
 * [Purely Functional I/O in Scala](http://blog.higher-order.com/assets/scalaio.pdf)
 * [Stackless Scala With Free Monads](http://blog.higher-order.com/assets/trampolines.pdf)
 * [Monad Transformers for the working programmer](https://blog.buildo.io/monad-transformers-for-the-working-programmer-aa7e981190e7)
+* [Cats: OptionT](https://typelevel.org/cats/datatypes/optiont.html)
+* [No More Transformers: High-Performance Effects in Scalaz 8](http://degoes.net/articles/effects-without-transformers)
 
