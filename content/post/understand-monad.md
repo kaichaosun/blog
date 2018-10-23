@@ -74,23 +74,59 @@ But how should we deal with the values with context like Option or IO? There cou
 
 ### Define a Monad
 
-TODO: IO monad implementation
-
-How can we use IO monad:
+In this section, we will implement an 'ugly' Either monad:
 
 ```
+sealed trait Either[A, B] {
+  def flatMap(f: B => Either[A, B]): Either[A, B] =
+    this match {
+      case Right(v) =>
+        f(v)
+      case _ =>
+        this
+    }
 
+  def map[C](f: B => C): Either[A, C] =
+    this match {
+      case Right(v) => Right(f(v))
+      case _ => this.asInstanceOf[Either[A, C]]
+    }
+}
+
+case class Left[A, B](e: A) extends Either[A, B]
+case class Right[A, B](v: B) extends Either[A, B]
 ```
 
-The definition of IO monad:
+The usage of this either monad:
 
 ```
-
+val finalEither = for {
+    a <- Right[String, Int](1)
+    b <- Right[String, Int](2)
+  } yield (a + b)
 ```
 
 ### Monad Laws
 
-TODO
+When defining monad, it should follow a few laws, these laws maintain the basics of a category.
+
+> Identity law:
+>
+> ```
+> def unit[A](a: A): F[A]
+> def f[A](a: A): F[A]
+> 
+> // With same a, the following equation should be met.
+> f(a).flatMap(unit) == f(a)
+> unit(a).flatMap(f) == f(a)
+> ```
+>
+> Associative law:
+>
+> ```
+> // x is a F[A]
+> x.flatMap(f).flatMap(g) == x.flatMap(a => f(a).flatMap(g))
+> ```
 
 
 
@@ -295,9 +331,19 @@ object OptionT {
 }
 ```
 
-Many monad transformers could be stack unsafe, like `StateT` .
+One thing need to mention is that many monad transformers could be stack unsafe, like `StateT` .
 
 ## Freer Monad / Extensible Effect
+
+Monad transformers has a limited nest layers, also must keep the order same in different computation. What if we have some super way to rule all the monads? In this case we can walk through the control flow without worring the different monad. Finally it will free us from assembling different manads.
+
+The principle ideas to understand effects are:
+
+> * An effect is most easily understood as an interaction between a sub-expression and a central authority that administers the global resources of a program.
+>
+> - An effect can be viewed as a message to the central authority plus enough information to resume the suspended calculation.
+
+The core of Eff library is Eff monad and the open union. Defining effects and their interactions is done by the user. There are some common effects provided by the library like ReaderEffect, IOEffect etc for convenience.
 
 
 
