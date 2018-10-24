@@ -60,7 +60,7 @@ Usually, we can refactor impure function to be pure by adding a proper **context
 
 Basicly, FP is about fucntion composition. That means:
 
-```
+```scala
 // a, b, c are types
 f: a -> b, 
 g: b -> c, 
@@ -111,7 +111,7 @@ When defining monad, it should follow a few laws, these laws maintain the basics
 
 Identity law:
 
-```
+```scala
 def unit[A](a: A): F[A]
 def f[A](a: A): F[A]
 
@@ -122,7 +122,7 @@ unit(a).flatMap(f) == f(a)
 
 Associative law:
 
-```
+```scala
 // x is a F[A]
 x.flatMap(f).flatMap(g) == x.flatMap(a => f(a).flatMap(g))
 ```
@@ -143,7 +143,7 @@ Following steps show the way to use free monad provides by cats library (need to
 
 1. Create custome ADT to represent the operation:
 
-   ````
+   ````scala
    sealed trait KVStoreA[A]
    
    case class Put[T](key: String, value: T) extends KVStoreA[Unit]
@@ -153,7 +153,7 @@ Following steps show the way to use free monad provides by cats library (need to
 
 2. Define free monad with Free for above ADT:
 
-   ```
+   ```scala
    import cats.free.Free
    
    // We haven't define Functor, but use CoYoneda[F, _] is functor for any F.
@@ -162,7 +162,7 @@ Following steps show the way to use free monad provides by cats library (need to
 
 3. Using **liftF** Create DSL related functions which return above free monad:
 
-   ```
+   ```scala
    import cats.free.Free.liftF
       
    // Put returns nothing (i.e. Unit).
@@ -187,7 +187,7 @@ Following steps show the way to use free monad provides by cats library (need to
 
 4. Build a program with constructed function:
 
-   ```
+   ```scala
    def program: KVStore[Option[Int]] =
      for {
        _ <- put("cats", 2)
@@ -199,7 +199,7 @@ Following steps show the way to use free monad provides by cats library (need to
 
 5. Implement the interpreter which is a natural transformation to interpret each operation:
 
-   ```
+   ```scala
    import cats.{Id, ~>}
    import scala.collection.mutable
    
@@ -228,7 +228,7 @@ Following steps show the way to use free monad provides by cats library (need to
 
 6. Run the program with defined interpreter:
 
-   ```
+   ```scala
    // Free[_] is just a recursive structure, which similar to List.
    val result: Option[Int] = program.foldMap(impureCompiler)
    ```
@@ -237,7 +237,7 @@ Following steps show the way to use free monad provides by cats library (need to
 
 The implementation of free monad, details go to this [post](https://underscore.io/blog/posts/2015/04/23/deriving-the-free-monad.html):
 
-```
+```scala
 sealed trait Free[F[_], A] {
   def flatMap[B](f: A => Free[F, B])(implicit functor: Functor[F]): Free[F, B] =
     this match {
@@ -264,14 +264,14 @@ Usually, we will have a lot of ADTs in the code, but unrelated monad do not comp
 
 Imagine there is a piece of code to fetch the address of a user by its id:
 
-```
+```scala
 def findUserById(id: Long): Future[User] = ???
 def findAddressByUser(user: User): Future[Address] = ???
 ```
 
 We can use for-comprehension to control the workflow since they share the same context Future and Future has a build-in `flatMap`.
 
-```
+```scala
 def findAddressByUserId(id: Long): Future[Address] =
   for {
     user    <- findUserById(id)
@@ -281,14 +281,14 @@ def findAddressByUserId(id: Long): Future[Address] =
 
 There is a situation that we can't find a user if the id is not exist, event the address can be optional for a user.
 
-```
+```scala
 def findUserById(id: Long): Future[Option[User]] = ???
 def findAddressByUser(user: User): Future[Option[Address]] = ???
 ```
 
 Then the workflow need to be changed:
 
-```
+```scala
 def findAddressByUserId(id: Long): Future[Option[Address]] =
   findUserById(id).flatMap {
     case Some(user) => findAddressByUser(user)
@@ -302,7 +302,7 @@ It's working but not as beautiful as previous. Now we comes to monad transformer
 
 Use **OptionT** provided by cats in for-comprehension:
 
-```
+```scala
 def findAddressByUserIdOptionT(id: Long): OptionT[Future, Address] =
   for {
     user <- OptionT(findUserById(id))
@@ -314,7 +314,7 @@ def findAddressByUserIdOptionT(id: Long): OptionT[Future, Address] =
 
 The brief definition of OptionT:
 
-```
+```scala
 case class OptionT[F[_], A](value: F[Option[A]]) {
   def map[B](f: A => B)(implicit F: Functor[F]): OptionT[F, B] =
     OptionT(value.map(_.map(f)))
@@ -348,7 +348,7 @@ The principle ideas to understand effects are:
 
 ### How to use
 
-```
+```scala
 type Stack = Fx.fx2[Option, StringEither]
 
 type HasOption[R] = MemberIn[Option, R]
