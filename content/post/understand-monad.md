@@ -109,23 +109,23 @@ val finalEither = for {
 
 When defining monad, it should follow a few laws, these laws maintain the basics of a category.
 
-> Identity law:
->
-> ```
-> def unit[A](a: A): F[A]
-> def f[A](a: A): F[A]
-> 
-> // With same a, the following equation should be met.
-> f(a).flatMap(unit) == f(a)
-> unit(a).flatMap(f) == f(a)
-> ```
->
-> Associative law:
->
-> ```
-> // x is a F[A]
-> x.flatMap(f).flatMap(g) == x.flatMap(a => f(a).flatMap(g))
-> ```
+Identity law:
+
+```
+def unit[A](a: A): F[A]
+def f[A](a: A): F[A]
+
+// With same a, the following equation should be met.
+f(a).flatMap(unit) == f(a)
+unit(a).flatMap(f) == f(a)
+```
+
+Associative law:
+
+```
+// x is a F[A]
+x.flatMap(f).flatMap(g) == x.flatMap(a => f(a).flatMap(g))
+```
 
 
 
