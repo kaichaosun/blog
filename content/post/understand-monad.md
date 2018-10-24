@@ -12,7 +12,7 @@ The facination of doing programming is to solve the exist problems. Revisit the 
 If there is one rule in software development, i think that must be `no silver bullet`. The OOP has ruled the system development for more that 20 years (The number comes from JAVA becomes popularity). More and more devs find object-oriented programming sucks:
 
 - Mutable state of class instances
-- Hard to conform with SOLID
+- Hard to conform with SOLID when business logic becomes messy
 - Hard to test caused by improper DI
 - So many lines of code
 - Boring ...
@@ -42,7 +42,6 @@ A function can be pure or impure. Usually we use pure function in FP as much as 
 
 1. Give the same input argument to the function, it should always return same output.
 2. The function should only depends on the return value to change the whole "world", which means no side effects. The side effects can be an exception, mutate an object, IO operation, etc. 
-3. For concurrent program, the function should not take mutable objects as argument.
 
 A short summary is:
 
@@ -68,15 +67,15 @@ g: b -> c,
 g compose f: a -> c
 ```
 
-But how should we deal with the values with context like Option or IO? There could be redundant code if we still use simple function composition in this case. There comes **Monad**, it opens the context and keeps the context same in the following computation.
+But how should we deal with the values with context like Option or IO? There could be lots of scheleton code if we still use simple function composition in this case. Then, there comes **Monad**, it opens the context and keeps the context same in the following computation.
 
 ## Monad
 
 ### Define a Monad
 
-In this section, we will implement an 'ugly' Either monad:
+In this section, we will implement an 'ugly' Either monad, without considering any variance in type marameter:
 
-```
+```scala
 sealed trait Either[A, B] {
   def flatMap(f: B => Either[A, B]): Either[A, B] =
     this match {
@@ -134,7 +133,7 @@ When defining monad, it should follow a few laws, these laws maintain the basics
 
 ### Why need it
 
-
+There is developers want to decomose data from the interpreter, which means there can be multiple interpretation for the same piece of computation. It would be helpful if we want to invoke different computation in different place. In this case, we need to wrap such computation in a context which can be composed with the computation in same context. This is a special monad which is called free. Typically ADT is common used to represent the data.
 
 ### How to use
 
@@ -333,7 +332,11 @@ object OptionT {
 
 One thing need to mention is that many monad transformers could be stack unsafe, like `StateT` .
 
-## Freer Monad / Extensible Effect
+
+
+## Extensible Effect
+
+### Why need it
 
 Monad transformers has a limited nest layers, also must keep the order same in different computation. What if we have some super way to rule all the monads? In this case we can walk through the control flow without worring the different monad. Finally it will free us from assembling different manads.
 
@@ -342,6 +345,28 @@ The principle ideas to understand effects are:
 > * An effect is most easily understood as an interaction between a sub-expression and a central authority that administers the global resources of a program.
 >
 > - An effect can be viewed as a message to the central authority plus enough information to resume the suspended calculation.
+
+### How to use
+
+```
+type Stack = Fx.fx2[Option, StringEither]
+
+type HasOption[R] = MemberIn[Option, R]
+type StringEither[A] = Either[String, A]
+type HasEither[R] = MemberIn[StringEither, R]
+
+def program[R: HasOption: HasEither] = for {
+  a <- fromOption(Some(1))
+  b <- fromEither(Right(2))
+} yield a + b
+
+println(program[Stack])
+println(program[Stack].asInstanceOf[ImpureAp[_, _, _]].continuation.functions)
+
+val result = program[Stack].runOption.runEither.run // Right(Some(3))
+```
+
+### What's the implementation
 
 The core of Eff library is Eff monad and the open union. Defining effects and their interactions is done by the user. There are some common effects provided by the library like ReaderEffect, IOEffect etc for convenience.
 
@@ -365,4 +390,5 @@ The core of Eff library is Eff monad and the open union. Defining effects and th
 * [Monad Transformers for the working programmer](https://blog.buildo.io/monad-transformers-for-the-working-programmer-aa7e981190e7)
 * [Cats: OptionT](https://typelevel.org/cats/datatypes/optiont.html)
 * [No More Transformers: High-Performance Effects in Scalaz 8](http://degoes.net/articles/effects-without-transformers)
+* [Why free monads matter](http://www.haskellforall.com/2012/06/you-could-have-invented-free-monads.html)
 
