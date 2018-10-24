@@ -98,7 +98,7 @@ case class Right[A, B](v: B) extends Either[A, B]
 
 The usage of this either monad:
 
-```
+```scala
 val finalEither = for {
     a <- Right[String, Int](1)
     b <- Right[String, Int](2)
