@@ -693,3 +693,9 @@ ul > li > ul > li {
 ul > li > ul > li > ul > li {
 	list-style-type: square;
 }
+
+#post-list li {
+	margin: 0px;
+	padding-top: 15px;
+	padding-bottom: 5px;
+}

@@ -138,7 +138,7 @@ In practice, we can view **Free** as a clever way of forming **Monad** with prov
 
 Following steps show the way to use free monad provides by cats library (need to add `cats-free` dependency): 
 
-1> Create custome ADT to represent the operation:
+1\. Create custome ADT to represent the operation:
 
    ````scala
    sealed trait KVStoreA[A]
@@ -148,7 +148,7 @@ Following steps show the way to use free monad provides by cats library (need to
    case class Delete(key: String) extends KVStoreA[Unit]
    ````
 
-2> Define free monad with Free for above ADT:
+2\. Define free monad with Free for above ADT:
 
    ```scala
    import cats.free.Free
@@ -157,7 +157,7 @@ Following steps show the way to use free monad provides by cats library (need to
    type KVStore[A] = Free[KVStoreA, A]
    ```
 
-3> Using **liftF** Create DSL related functions which return above free monad:
+3\. Using **liftF** Create DSL related functions which return above free monad:
 
    ```scala
    import cats.free.Free.liftF
@@ -182,7 +182,7 @@ Following steps show the way to use free monad provides by cats library (need to
      } yield ()
    ```
 
-4> Build a program with constructed function:
+4\. Build a program with constructed function:
 
    ```scala
    def program: KVStore[Option[Int]] =
@@ -194,7 +194,7 @@ Following steps show the way to use free monad provides by cats library (need to
      } yield n
    ```
 
-5> Implement the interpreter which is a natural transformation to interpret each operation:
+5\. Implement the interpreter which is a natural transformation to interpret each operation:
 
    ```scala
    import cats.{Id, ~>}
@@ -223,7 +223,7 @@ Following steps show the way to use free monad provides by cats library (need to
      }
    ```
 
-6> Run the program with defined interpreter:
+6\. Run the program with defined interpreter:
 
    ```scala
    // Free[_] is just a recursive structure, which similar to List.
