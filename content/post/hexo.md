@@ -6,14 +6,14 @@ title: 使用 Hexo 搭建个人博客
 [Hexo](https://hexo.io/) 是一个博客框架,支持Markdown,通过命令行可以快速部署,
 有大量的主题和插件,让你的blog飞起来...
 
-### 安装 Hexo
+## 安装 Hexo
 ```bash
 sudo npm install -g hexo-cli
 
 hexo -v
 ```
 
-### 创建 Github blog project
+## 创建 Github blog project
 个人习惯将source和deploy分开,在github上创建一个blog项目(保存源文件)和
 xxx.github.io项目(用于部署Github个人主页,xxx为用户名,具体参考Github [Pages](https://pages.github.com/))
 ```bash
@@ -23,7 +23,7 @@ cd blog
 
 npm install
 ```
-### Run server
+## Run server
 
 ``` bash
 $ hexo s
@@ -31,7 +31,7 @@ $ hexo s
 
 More info: [Server](https://hexo.io/docs/server.html)
 
-### 设置博客页个人信息
+## 设置博客页个人信息
 我的配置文件 _config.yml
 ```
 # Site
@@ -50,7 +50,7 @@ permalink: :year/:month/:day/:title/
 permalink_defaults:
 ```
 
-### 绑定Github地址
+## 绑定Github地址
 
 ```bash
 $ npm install hexo-deployer-git --save
@@ -67,13 +67,13 @@ deploy:
 
 More info: [Generating](https://hexo.io/docs/generating.html)
 
-### 创建post
+## 创建post
 
 ```bash
 hexo new hello-world
 ```
 
-### Deploy
+## Deploy
 
 ``` bash
 hexo clean
@@ -81,7 +81,7 @@ hexo clean
 hexo deploy
 ```
 
-### 绑定万网域名
+## 绑定万网域名
 - 在hexo博客项目,source目录下添加名称为`CNAME`的文件,内容为个性化域名,如:whisperd.tech
 - 在阿里云`域名管理`对应的域名下添加新的域名解析策略,如下图:
 
