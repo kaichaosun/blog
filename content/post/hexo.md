@@ -3,6 +3,8 @@ date: 2017-01-04
 title: 使用 Hexo 搭建个人博客
 ---
 
+**Note:** 已经使用Hugo创建博客。
+
 [Hexo](https://hexo.io/) 是一个博客框架,支持Markdown,通过命令行可以快速部署,
 有大量的主题和插件,让你的blog飞起来...
 
