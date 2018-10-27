@@ -260,15 +260,13 @@ Google cloud provide GKE.
 You can simply start a cluster in AWS with [kops](https://github.com/kubernetes/kops)
 
 
-
-
 ## References
-https://medium.freecodecamp.org/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882  
-https://github.com/openfaas/faas-netes  
-https://gist.github.com/kevin-smets/b91a34cea662d0c523968472a81788f7  
-https://github.com/denverdino/k8s-for-docker-desktop  
-https://rominirani.com/tutorial-getting-started-with-kubernetes-with-docker-on-mac-7f58467203fd   
-https://medium.com/google-cloud/kubernetes-110-your-first-deployment-bf123c1d3f8   
-https://github.com/kubernetes-incubator/kubespray/blob/master/docs/comparisons.md  
-https://blog.hasura.io/gke-vs-aks-vs-eks-411f080640dc  
-https://x-team.com/blog/introduction-kubernetes-architecture/  
+* https://medium.freecodecamp.org/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882  
+* https://github.com/openfaas/faas-netes  
+* https://gist.github.com/kevin-smets/b91a34cea662d0c523968472a81788f7  
+* https://github.com/denverdino/k8s-for-docker-desktop  
+* https://rominirani.com/tutorial-getting-started-with-kubernetes-with-docker-on-mac-7f58467203fd   
+* https://medium.com/google-cloud/kubernetes-110-your-first-deployment-bf123c1d3f8   
+* https://github.com/kubernetes-incubator/kubespray/blob/master/docs/comparisons.md  
+* https://blog.hasura.io/gke-vs-aks-vs-eks-411f080640dc  
+* https://x-team.com/blog/introduction-kubernetes-architecture/  
