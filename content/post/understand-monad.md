@@ -5,11 +5,11 @@ title: Understand Monad in Functional Programming
 
 ## Why Functional Programming?
 
-The facination of doing programming is to solve the exist problems. Revisit the history of software development, at first place we have **Procedure-oriented programming**. As the system becomes bigger and bigger, the codebase is so hard to maintain and adding new features. Then a few genius comes out the idea with **OOP** with the **SOLID** principles to guide the daily dev work.
+The facination of doing programming is to solve the exist problems. Revisit the history of software development, at first place we have **procedure-oriented programming**. As the system becomes bigger, the codebase is so hard to maintain and adding new features. Then a few genius comes out the idea with **OOP** with the **SOLID** principles to guide the daily dev work.
 
 If there is one rule in software development, i think that must be `no silver bullet`. The OOP has ruled the system development for more that 20 years (The number comes from JAVA becomes popularity). More and more devs find object-oriented programming sucks:
 
-- Mutable state of class instances
+- Mutable state of instances, variables
 - Hard to conform with SOLID when business logic becomes messy
 - Hard to test caused by improper DI
 - So many lines of code
@@ -41,16 +41,32 @@ A function can be pure or impure. Usually we use pure function in FP as much as 
 1. Give the same input argument to the function, it should always return same output.
 2. The function should only depends on the return value to change the whole "world", which means no side effects. The side effects can be an exception, mutate an object, IO operation, etc. 
 
+I will give one example to understand pure function:
+
+```scala
+// pure function
+def add(i: Int, y: Int) =
+  i + y
+
+// impure function
+def addAndPrint(i: Int, y: Int) = {
+  val result = i + y
+  println(s"The result is ${result}")
+}
+```
+
 A short summary is:
 
 * Output depends only on input.
 * No side effects
 
+With pure function, it's possible to make sure our program is **referential transparency** which means that an expression always evaluate to the same result in any piece of code. Referential transparency makes the code easier to reason about.
+
 What can be done if we don't read any inputs and write any outputs?
 
-Usually, we can refactor impure function to be pure by adding a proper **context** like **Option**, **cats.effect.IO** or **monix.eval.Task** to the function return type. Some cases are:
+Usually, we can refactor impure function to be pure by adding a proper **context** (here a context is what a value wrapped in.) like **Option**, **cats.effect.IO** or **monix.eval.Task** to the function return type. Some cases are:
 
-* Use **Option** to represent exception
+* Use **Either** to represent exception
 * Use **IO** or **Task** to delay the I/O operation
 
 ## Function Composition
@@ -58,13 +74,24 @@ Usually, we can refactor impure function to be pure by adding a proper **context
 Basicly, FP is about fucntion composition. That means:
 
 ```scala
-// a, b, c are types
-f: a -> b, 
-g: b -> c, 
-g compose f: a -> c
+// A, B, C are types
+f: A -> B, 
+g: B -> C, 
+g compose f: A -> C
 ```
 
-But how should we deal with the values with context like Option or IO? There could be lots of scheleton code if we still use simple function composition in this case. Then, there comes **Monad**, it opens the context and keeps the context same in the following computation.
+But how should we deal with the values wrapped in context like Option or IO? There could be lots of scheleton code if we still use simple function composition in this case. Then, there comes **monad**, it opens the context and keeps the context same in the following computation. Usually we use for comprehension to simplise the control flow:
+
+```scala
+val result = for {
+  a <- Option.apply(1) // this is equal to Some(1)
+  b <- Option.apply(2)
+} yield a + b
+
+// result is: Some(3)
+```
+
+
 
 ## Monad
 
@@ -387,4 +414,5 @@ The core of Eff library is Eff monad and the open union. Defining effects and th
 * [Cats: OptionT](https://typelevel.org/cats/datatypes/optiont.html)
 * [No More Transformers: High-Performance Effects in Scalaz 8](http://degoes.net/articles/effects-without-transformers)
 * [Why free monads matter](http://www.haskellforall.com/2012/06/you-could-have-invented-free-monads.html)
+* [Referential transparency](https://wiki.haskell.org/Referential_transparency)
 
