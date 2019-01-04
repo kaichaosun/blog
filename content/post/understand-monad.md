@@ -52,6 +52,7 @@ def add(i: Int, y: Int) =
 def addAndPrint(i: Int, y: Int) = {
   val result = i + y
   println(s"The result is ${result}")
+  result
 }
 ```
 
@@ -97,27 +98,24 @@ val result = for {
 
 ### Define a Monad
 
-In this section, we will implement an 'ugly' Either monad, without considering any variance in type marameter:
+In this section, we will implement an 'ugly' Option monad, without considering any variance in type marameter:
 
 ```scala
-sealed trait Either[A, B] {
-  def flatMap(f: B => Either[A, B]): Either[A, B] =
+sealed trait Option[+A] {
+  def flatMap[B](func: A => Option[B]): Option[B] =
     this match {
-      case Right(v) =>
-        f(v)
-      case _ =>
-        this
+      case None => None
+      case Some(a) => func(a)
     }
-
-  def map[C](f: B => C): Either[A, C] =
+  
+  def map[B](func: A => B): Option[B] =
     this match {
-      case Right(v) => Right(f(v))
-      case _ => this.asInstanceOf[Either[A, C]]
+      case None => None
+      case Some(a) => Some(func(a))
     }
 }
-
-case class Left[A, B](e: A) extends Either[A, B]
-case class Right[A, B](v: B) extends Either[A, B]
+case object None extends Option[Nothing]
+case class Some[T](value: T) extends Option[T]
 ```
 
 The usage of this either monad:
