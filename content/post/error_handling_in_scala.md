@@ -1,5 +1,5 @@
 ---
-date: 2019-01-02
+date: 2019-01-17
 title: Understand Error Handling in Scala
 ---
 
@@ -58,7 +58,7 @@ val result = for {
 
 ### Try
 `Try` monad is another commonly used  way to do error handling in Scala. It's used to dealing with some code which will throw exception out of your control like thirdparty library oriented in Java. Better than `try catch` block, you can get the monad control flow as a bonus. Refer to [this blog](https://whisperd.tech/post/understand-monad/) to get more knowledge about monad control flow. With `Try` monad, you can use `Failure(error)` for error and `Success(value)` for nomal value.
-```
+```scala
 def divide(m: Int, n: Int): Try[Int] =
   Try{
     m / n
@@ -78,10 +78,12 @@ val result = for {
 
 ### Monad Error
 
+
 ### Error Handling with IO Monad
 
+
 ## Reference
-* []()
+* [Scala best practice: do not throw exception](https://nrinaudo.github.io/scala-best-practices/referential_transparency/avoid_throwing_exceptions.html)
 
 
 
