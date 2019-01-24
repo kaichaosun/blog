@@ -6,7 +6,10 @@ title: Understand Error Handling in Scala
 ## What is error
 
 
+
 ## Exception model
+
+
 
 
 ## How to handle exception
@@ -74,16 +77,35 @@ val result = for {
 
 ### Validated
 
+`Validated` is the data type provided by [cats](https://github.com/typelevel/cats). It's widely used in scenarios that need accumulating error information, like:
 
+* input form check
+* configuration check
+
+With `Validated`, user can see all the error information at once, don't need to wait to see next error until fixed previous one. Use `Invalid(NonEmptyList(error))` when error happens, use `Valid(value)` when calculation ends properly. `NonEmptyList` is a [semigroup](https://typelevel.org/cats/typeclasses/semigroup.html) defined in cats to fulfill data accumulation.
+
+```scala
+def divide(m: Int, n: Int): Validated[NonEmptyList[String], Int] =
+  if (n == 0) Invalid(NonEmptyList.of("one error"))
+  else Valid(m / n)
+
+val result = (divide4(5, 1), divide4(10, 1)).mapN((_, _))
+
+// result is Invalid(NonEmptyList(one error, one error))
+```
 
 ### Monad Error
+
 
 
 ### Error Handling with IO Monad
 
 
+
+
 ## Reference
 * [Scala best practice: do not throw exception](https://nrinaudo.github.io/scala-best-practices/referential_transparency/avoid_throwing_exceptions.html)
+* [Cats data type: Validated](https://typelevel.org/cats/datatypes/validated.html)
 
 
 
