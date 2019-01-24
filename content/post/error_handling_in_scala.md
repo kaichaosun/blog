@@ -3,14 +3,67 @@ date: 2019-01-17
 title: Understand Error Handling in Scala
 ---
 
-## What is error
+## What's Exception
 
+`Exception` are objects that defined in Java to represent error scenarios. Unhandled exceptions could terminate the program or show default message from http server.
 
+### Excpetion hirarchy
 
-## Exception model
+Since Scala is designed to reuse Java standard or thirdparth library without much effort. It still worth to know the exception hirarachy originated in Java. It will help us deal with error scenarios. 
 
+![Exception hierarachy](/static/error-handling/exception_hierarchy.png)
 
+* `Throwable` is the root of exception hirarchy.
+* `Exception` subclasses represent errors that the program can recover from. 
+* `Error` subclasses represent errors that a program generally shouldn't expect to catch and recover from, like OutOfMemoryError.
+* `RuntimeException` is subclass of `Exception`, they represent programming errors that a program shouldn't generally expect to occur, but could recover from, like NullPointerException.
+* Subclasses of `Exception`, other than `RuntimeException`, represent errors that a program could generally meet, like network connection error, file read/write error.
 
+### Checked vs unchecked exceptions
+
+*Checked excpetions* need to be declared in the method that throws it and must be handled by the callers, unless it will fail the compiler.
+
+```Java
+public FileInputStream(File file) throws FileNotFoundException
+```
+
+```java
+try {
+  FileInputStream fin = new FileInputStream(file);
+} catch (FileNotFoundException e) {
+  e.getMessage()
+}
+```
+
+In Java we can also keep throwing the exception without handling it.
+
+The `Error`s and `RuntimeException`s (and their subclasses) are called *unchecked exceptions*, means that:
+
+* they can be thrown "at any time"
+* methods don't need to declare that they can throw such an exception
+* callers don't have to handle them explicitly.
+
+### Exceptions in Scala
+
+All exceptions in Scala are *unchecked* which means the Scala compiler doesn't require you to declare and handle the exception explicitly. 
+
+As a programming language aimed for functional programming, we should never throw exception in Scala code. It breaks the referential transparency. We have following two functions `foo1` and `foo2`.
+
+```Scala
+def foo1() = if(false) throw new Exception else 2
+
+def foo2() = {
+  val a = throw new Exception
+  if (false) a  else 2
+}
+
+foo1() // res0: Int = 2
+foo2() // java.lang.Exception
+```
+
+Calling foo1 will terminate normally, calling foo2 will throw an exception.
+
+We should always use a FP way to handle exception in Scala. I have listed a few options below. 
 
 ## How to handle exception
 
@@ -98,7 +151,47 @@ val result = (divide4(5, 1), divide4(10, 1)).mapN((_, _))
 
 
 
+```scala
+trait CustomError[A] {
+  def errorFromString(str: String): A
+  def errorFromThrowable(e: Throwable): A
+}
+
+object CustomizeError {
+  implicit val ThrowableCustomError = new CustomError[Throwable] {
+    override def errorFromString(str: String): Throwable =
+      new Exception(str)
+    override def errorFromThrowable(e: Throwable): Throwable =
+      e
+  }
+}
+
+def divide[F[_], E](m: Int, n: Int)(implicit monadError: MonadError[F, E],
+    error: CustomError[E]): F[Int] =
+  if (n == 0) monadError.raiseError(error.errorFromString("Divide by 0"))
+  else monadError.pure(m / n)
+
+val divideTry = divide[Try, Throwable](10, 0)
+```
+
+
+
 ### Error Handling with IO Monad
+
+```scala
+case class BusinessException(msg: String) extends Exception(msg)
+
+val boom = IO.raiseError(new BusinessException("error happens"))
+
+boom.unsafeRunSync()
+
+boom.attempt.map{
+  case Left(BusinessException(msg)) => "business error"
+  case _ => "other error"
+}.unsafeRunSync()
+
+val result = IO.delay(10 / 0).flatMap(n => IO(println(n)))
+```
 
 
 
@@ -106,6 +199,8 @@ val result = (divide4(5, 1), divide4(10, 1)).mapN((_, _))
 ## Reference
 * [Scala best practice: do not throw exception](https://nrinaudo.github.io/scala-best-practices/referential_transparency/avoid_throwing_exceptions.html)
 * [Cats data type: Validated](https://typelevel.org/cats/datatypes/validated.html)
+* [The exception hierarchy in Java](https://www.javamex.com/tutorials/exceptions/exceptions_hierarchy.shtml)
+* [Handling exceptions in Scala](https://pedrorijo.com/blog/scala-exceptions/)
 
 
 
