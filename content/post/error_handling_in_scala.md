@@ -23,7 +23,7 @@ Since Scala is designed to reuse Java standard or thirdparth library without muc
 
 *Checked excpetions* need to be declared in the method that throws it and must be handled by the callers, unless it will fail the compiler.
 
-```Java
+```java
 public FileInputStream(File file) throws FileNotFoundException
 ```
 
@@ -49,7 +49,7 @@ All exceptions in Scala are *unchecked* which means the Scala compiler doesn't r
 
 As a programming language aimed for functional programming, we should never throw exception in Scala code. It breaks the referential transparency. We have following two functions `foo1` and `foo2`.
 
-```Scala
+```scala
 def foo1() = if(false) throw new Exception else 2
 
 def foo2() = {
