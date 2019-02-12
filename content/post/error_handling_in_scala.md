@@ -149,7 +149,14 @@ val result = (divide4(5, 1), divide4(10, 1)).mapN((_, _))
 
 ### Monad Error
 
+`MonadError` is a monad that abstracts over error handling monad like Option / Either / Try, which means we can writing business code without concerning about the specific error handling monad. In this way, our code becomes more generic and compact.
 
+* `pure`: create a value with a successful result wrapped by the error handling monad.
+* `raiseError` –  create a value which represents an error.
+* `fromEither / fromTry / fromOption / fromValidated` – convert a specific error handling monad into the related MonadError
+* `handleError / handleErrorWith / recover / recoverWith` – handle the error scenario and return a successful value.
+
+One example looks like following code:
 
 ```scala
 trait CustomError[A] {
@@ -166,17 +173,20 @@ object CustomizeError {
   }
 }
 
-def divide[F[_], E](m: Int, n: Int)(implicit monadError: MonadError[F, E],
-    error: CustomError[E]): F[Int] =
+def divide[F[_], E](m: Int, n: Int)(implicit monadError: MonadError[F, E], error: CustomError[E]): F[Int] =
   if (n == 0) monadError.raiseError(error.errorFromString("Divide by 0"))
   else monadError.pure(m / n)
 
+import cats.implicits._
 val divideTry = divide[Try, Throwable](10, 0)
 ```
 
-
-
 ### Error Handling with IO Monad
+
+`IO` monad is commonly used while dealing with side effects provided by [cats-effect](https://github.com/typelevel/cats-effect). There is an instance of `MonadError[IO, Throwable]` in cats-effect, all the error handling  is done throught it. The convenient function to handle error scenario.
+
+* `raiseError`: constructs an `IO` which wraps up a Throwable.
+* `attemp`: sequence the convertion between exception in IO and Either.
 
 ```scala
 case class BusinessException(msg: String) extends Exception(msg)
@@ -193,7 +203,9 @@ boom.attempt.map{
 val result = IO.delay(10 / 0).flatMap(n => IO(println(n)))
 ```
 
+## Summary
 
+Error handling is one of the most important field in programming. FP provides a more graceful way to do it comparing with OO. Review this post and contact me if you got any thoughts.
 
 
 ## Reference
@@ -201,6 +213,8 @@ val result = IO.delay(10 / 0).flatMap(n => IO(println(n)))
 * [Cats data type: Validated](https://typelevel.org/cats/datatypes/validated.html)
 * [The exception hierarchy in Java](https://www.javamex.com/tutorials/exceptions/exceptions_hierarchy.shtml)
 * [Handling exceptions in Scala](https://pedrorijo.com/blog/scala-exceptions/)
+* [Monad Error for the rest of us](https://www.codacy.com/blog/monad-error-for-the-rest-of-us/)
+* [Cats Effect: IO](https://typelevel.org/cats-effect/datatypes/io.html)
 
 
 
