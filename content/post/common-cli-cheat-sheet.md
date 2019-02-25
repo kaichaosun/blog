@@ -1,6 +1,6 @@
 ---
 date: 2019-01-02
-title: Cheat sheet for common used CLI
+title: Cheatsheet for common used CLI
 ---
 
 ## Curl Post JSON
@@ -58,6 +58,14 @@ gh-md-toc README.md
 ```
 find . -name '*.scala' | xargs wc -l
 ```
+
+## Docker override entrypoint
+
+```
+docker run -it --entrypoint /usr/bin/redis-cli example/redis
+```
+
+
 
 ## Reference
 
