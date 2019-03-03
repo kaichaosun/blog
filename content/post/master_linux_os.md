@@ -1,11 +1,13 @@
 ---
 date: 2019-01-24
-title: Master Linux 
+title: Manjaro Linux tutorial
 ---
+
+[TOC]
 
 ## Install Manjaro Linux 
 
-### Burn ISO to usb stick:
+### Burn image to usb stick:
 
 1. Download mankato - GNOME [here](https://manjaro.org/download/gnome/)
 
@@ -44,34 +46,12 @@ b. Uncheck the option Turn on fast startup
 Click on Save Changes
 ```
 
-## Software install
-
-Use `tweaks` to adjust dock icon location and size
-
-```shell
-sudo pacman -S yay
-
-yay -S shadowsocks-qt5
-
-yay -S google-chrome
-
-yay -S typora
-
-yay -S neofetch
-
-yay -S xorg-xev
-
-sudo pacman -S zsh zsh-completions
-cat /etc/shells
-chsh -s /bin/zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-```
-
-
-
 ## Configuration
 
-### Turn CapsLock into Control
+### Gnome Tweak
+Use `tweaks` to adjust dock icon location and size
+
+### Map CapsLock into Control
 
 ```shell
 xmodmap -pke > ~/.Xmodmap
@@ -105,7 +85,7 @@ mkdir ~/workspace/Github/dasheng
 mkdir ~/workspace/Github/other
 ```
 
-Sync time
+### Sync time
 
 ```shell
 sudo pacman -S ntp
@@ -121,7 +101,225 @@ Ctrl+N: new window
 Alt+Q: close window
 ```
 
+### Git config
 
+```
+git config --global user.name "dasheng"
+git config --global user.email "kaichaosuna@gmail.com"
+```
+
+### SSH config
+
+```
+ssh-keygen -t rsa -C "kaichaosuna@gmail.com"
+```
+
+## Software installation
+
+Package manager - yay
+
+```shell
+sudo pacman -S yay
+
+yay -S shadowsocks-qt5
+
+yay -S google-chrome
+
+yay -S typora
+
+yay -S neofetch
+
+yay -S xorg-xev
+
+sudo pacman -S zsh zsh-completions
+cat /etc/shells
+chsh -s /bin/zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+yay usage:
+
+```
+yay -Syu  # Update all packages from AUR and official repo
+yay -Yc # Remove unwanted dependencies
+```
+
+### Docker
+
+```
+sudo pacman -S docker docker-compose
+
+sudo systemctl start docker
+sudo systemctl enable docker
+
+sudo usermod -aG docker $USER
+```
+
+vim /etc/docker/daemon.json
+```
+{
+  "registry-mirrors": ["https://registry.docker-cn.com"]
+}
+```
+
+
+
+### Chrome extensions:
+
+- Vimium
+- Keepin' Tabs – tabs manager
+- 1password X
+
+```
+Ctrl + Shift + T -> reopen closed tabs
+```
+
+### Gnome desktop icon
+
+Gnome 3.28 desktop icon issue, solved with install nemo:
+```
+yay -S nemo
+```
+
+Add new autostart script in ./config/autostart
+```
+[Desktop Entry]
+Type=Application
+Name=Desktop Icons
+Exec=nemo-desktop
+OnlyShowIn=GNOME;
+NoDisplay=true
+X-GNOME-Autostart-Phase=Desktop
+X-GNOME-Autostart-Notify=true
+X-GNOME-AutoRestart=true
+X-GNOME-Provides=filemanager
+```
+
+### Kill process:
+
+ctrl+z => kill %1
+
+### install z
+
+```
+yay -S z-git
+```
+
+### Install Email client
+
+```
+yay -S mailspring
+```
+
+### Update mirror
+
+```
+pacman-mirrors --country China
+```
+
+### Install java
+
+```
+yay -S jdk8
+archlinux-java status
+sudo archlinux-java set jdk-8
+```
+
+### Install Alacritty
+
+https://arslan.io/2018/02/05/gpu-accelerated-terminal-alacritty/
+
+### Install googlepinyin
+
+```
+yay -S fcitx fcitx-googlepinyin fcitx-im fcitx-configtool
+```
+
+### Install password manager:
+
+```
+yay -S bitwarden-bin
+yay -S bitwarden-cli
+
+```
+
+### Shadowsocks in terminal:
+
+```
+export ALL_PROXY=socks5://127.0.0.1:1080
+unset ALL_PROXY
+```
+
+### Hacker news cli:
+
+```
+yay -S base-devel
+
+yay -S haxor-news
+
+yay -S python-pip
+
+sudo pip install 'prompt-toolkit==1.0.15'
+
+sudo pip install 'click==6.7'
+
+haxor-news
+```
+
+### Use openconnect:
+
+```
+sudo openconnect --user=username --authgroup=group vpnhost
+```
+
+### 网易云音乐:
+
+```
+yay -S netease-cloud-music
+```
+
+### Install tmux:
+
+```
+yay -S tmux
+ln -s ~/Workspace/Github/dasheng/init.conf/tmux/.tmux.conf ~/.tmux.conf
+```
+
+
+
+### Sbt usage:
+
+Proxy repository:
+
+add ~/.sbt/reposities
+
+```shell
+[repositories]
+  local
+  aliyun: http://maven.aliyun.com/nexus/content/groups/public/
+  aliyun-ivy: http://maven.aliyun.com/nexus/content/groups/public/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+  central: http://repo1.maven.org/maven2/
+```
+
+then run
+
+```shell
+sbt -Dsbt.override.build.repos=true
+```
+
+### Intellij Vim plugin
+
+add content in ~/.ideavimrc
+
+```
+source ~/.vimrc
+```
+
+
+### Wunderlist
+```
+yay -S wunderline
+```
 
 
 ## Reference

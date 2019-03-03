@@ -1,6 +1,6 @@
 ---
 date: 2019-01-17
-title: Dependency Injection in Scala
+title: (WIP) Dependency Injection in Scala
 ---
 
 ## What's Dependency Injection
