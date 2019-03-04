@@ -1,5 +1,5 @@
 ---
-date: 2019-01-24
+date: 2019-03-03
 title: Manjaro Linux tutorial
 ---
 
