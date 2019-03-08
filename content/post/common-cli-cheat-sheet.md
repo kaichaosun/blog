@@ -65,6 +65,16 @@ find . -name '*.scala' | xargs wc -l
 docker run -it --entrypoint /usr/bin/redis-cli example/redis
 ```
 
+## Git 
+Reset local branch after force push
+
+```
+git reset origin/master --hard
+```
+Rebase to certain commit, like change commit msg:
+```
+git rebase -i commit-id // p to pick, r to change msg
+```
 
 
 ## Reference
