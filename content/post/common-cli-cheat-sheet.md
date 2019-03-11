@@ -66,16 +66,21 @@ docker run -it --entrypoint /usr/bin/redis-cli example/redis
 ```
 
 ## Git 
-Reset local branch after force push
+**Reset local branch after force push:**
 
-```
+```shell
 git reset origin/master --hard
 ```
-Rebase to certain commit, like change commit msg:
+
+**Rebase to certain commit, like change commit msg:**
 ```
 git rebase -i commit-id // p to pick, r to change msg
-```
+```shell
 
+** Delete branch with illegal name:**
+```
+git branch -D -- --track
+```
 
 ## Reference
 
