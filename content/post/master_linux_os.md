@@ -1,6 +1,6 @@
 ---
 date: 2019-03-03
-title: Manjaro Linux tutorial
+title: The tutorial of Manjaro Linux usage
 ---
 
 [TOC]
@@ -9,15 +9,17 @@ title: Manjaro Linux tutorial
 
 ### Burn image to usb stick:
 
-1. Download mankato - GNOME [here](https://manjaro.org/download/gnome/)
+Steps:
 
-2. Check the hash and compare with the hash provided on the site:
+* Download mankato - GNOME [here](https://manjaro.org/download/gnome/)
+
+* Check the hash and compare with the hash provided on the site:
 
 ```shell
 shasum ./manjaro-gnome-18.0.2-stable-x86_64.iso
 ```
 
-3. Burn the iso file to USB stick on Linux
+* Burn the iso file to USB stick on Linux
 
 ```shell
 diskutil list
@@ -25,7 +27,7 @@ sudo umount /dev/disk2s4
 sudo dd if=/path/image.iso of=/dev/rdisk2s4 bs=1m
 ```
 
-	On windows, use [rufus](https://rufus.ie/) with `dd` mode.
+On windows, use [rufus](https://rufus.ie/) with `dd` mode.
 
 ### Bios set
 
@@ -94,23 +96,21 @@ sudo timedatectl set-ntp true
 
 ### Configure terminal
 
-```
 Ctrl+W: close tab
 Ctrl+T: new tab
 Ctrl+N: new window
 Alt+Q: close window
-```
 
 ### Git config
 
-```
+```shell
 git config --global user.name "dasheng"
 git config --global user.email "kaichaosuna@gmail.com"
 ```
 
 ### SSH config
 
-```
+```shell
 ssh-keygen -t rsa -C "kaichaosuna@gmail.com"
 ```
 
@@ -139,14 +139,14 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 yay usage:
 
-```
+```shell
 yay -Syu  # Update all packages from AUR and official repo
 yay -Yc # Remove unwanted dependencies
 ```
 
 ### Docker
 
-```
+```shell
 sudo pacman -S docker docker-compose
 
 sudo systemctl start docker
@@ -156,13 +156,11 @@ sudo usermod -aG docker $USER
 ```
 
 vim /etc/docker/daemon.json
-```
+```json
 {
   "registry-mirrors": ["https://registry.docker-cn.com"]
 }
 ```
-
-
 
 ### Chrome extensions:
 
@@ -170,14 +168,14 @@ vim /etc/docker/daemon.json
 - Keepin' Tabs – tabs manager
 - 1password X
 
-```
-Ctrl + Shift + T -> reopen closed tabs
-```
+Shortcuts:
+
+Ctrl + Shift + T: reopen closed tabs
 
 ### Gnome desktop icon
 
 Gnome 3.28 desktop icon issue, solved with install nemo:
-```
+```shell
 yay -S nemo
 ```
 
@@ -201,25 +199,25 @@ ctrl+z => kill %1
 
 ### install z
 
-```
+```shell
 yay -S z-git
 ```
 
 ### Install Email client
 
-```
+```shell
 yay -S mailspring
 ```
 
 ### Update mirror
 
-```
+```shell
 pacman-mirrors --country China
 ```
 
 ### Install java
 
-```
+```shell
 yay -S jdk8
 archlinux-java status
 sudo archlinux-java set jdk-8
@@ -237,22 +235,21 @@ yay -S fcitx fcitx-googlepinyin fcitx-im fcitx-configtool
 
 ### Install password manager:
 
-```
+```shell
 yay -S bitwarden-bin
 yay -S bitwarden-cli
-
 ```
 
 ### Shadowsocks in terminal:
 
-```
+```shell
 export ALL_PROXY=socks5://127.0.0.1:1080
 unset ALL_PROXY
 ```
 
 ### Hacker news cli:
 
-```
+```shell
 yay -S base-devel
 
 yay -S haxor-news
@@ -268,24 +265,22 @@ haxor-news
 
 ### Use openconnect:
 
-```
+```shell
 sudo openconnect --user=username --authgroup=group vpnhost
 ```
 
 ### 网易云音乐:
 
-```
+```shell
 yay -S netease-cloud-music
 ```
 
 ### Install tmux:
 
-```
+```shell
 yay -S tmux
 ln -s ~/Workspace/Github/dasheng/init.conf/tmux/.tmux.conf ~/.tmux.conf
 ```
-
-
 
 ### Sbt usage:
 
@@ -311,13 +306,13 @@ sbt -Dsbt.override.build.repos=true
 
 add content in ~/.ideavimrc
 
-```
+```shell
 source ~/.vimrc
 ```
 
 
 ### Wunderlist
-```
+```shell
 yay -S wunderline
 ```
 
