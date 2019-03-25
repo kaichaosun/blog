@@ -73,15 +73,18 @@ git reset origin/master --hard
 ```
 
 **Rebase to certain commit, like change commit msg:**
-```
-git rebase -i commit-id // p to pick, r to change msg
 ```shell
+git rebase -i commit-id // p to pick, r to change msg
+```
 
 ** Delete branch with illegal name:**
-```
+```shell
 git branch -D -- --track
 ```
 
-## Reference
+## NodeJS npm mirror
 
+```
+npm config set registry=http://registry.npm.taobao.org
+```
 
