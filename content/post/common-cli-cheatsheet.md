@@ -4,14 +4,17 @@ title: Cheatsheet for common used CLI
 ---
 
 ## Curl Post JSON
-```
+```shell
 curl -i -d '{"id": "111111","date": "2018-04-27T00:00:00+10:00","des": "test"}]' -H "Content-Type: application/json" -X POST https://endpoint
 
 curl -i -d '{"a":"1","b":"2"}' -H "Content-Type: application/json" -X POST https://endpoint
 ```
 
-## MySQL
-```
+## Database
+
+### MySQL
+
+```shell
 SHOW VARIABLES;
 
 SELECT FROM_UNIXTIME(1510289234);
@@ -20,7 +23,14 @@ SELECT NOW();
 
 SELECT UNIX_TIMESTAMP();
 ```
+### MongoDB
+
+```shell
+mongod --dbpath ~/data/mongodb
+```
+
 ## Zip / tar
+
 ```
 zip filename.zip file1 file2
 ```
@@ -82,7 +92,7 @@ git rebase -i commit-id // p to pick, r to change msg
 git branch -D -- --track
 ```
 
-## NodeJS npm mirror
+## Nodejs npm mirror
 
 ```
 npm config set registry=http://registry.npm.taobao.org
