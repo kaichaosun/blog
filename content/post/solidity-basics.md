@@ -1,6 +1,6 @@
 ---
 date: 2018-06-22
-title: (WIP) Understanding smart contracts
+title: (WIP) Understanding Smart Contracts
 ---
 
 ## Concepts  

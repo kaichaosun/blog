@@ -1,6 +1,6 @@
 ---
 date: 2019-03-30
-title: Cheatsheet for Shell programming
+title: Cheatsheet for Shell Programming
 ---
 
 ## Variables

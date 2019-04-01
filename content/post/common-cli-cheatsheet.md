@@ -1,6 +1,6 @@
 ---
 date: 2019-01-02
-title: Cheatsheet for common used CLI
+title: Cheatsheet for Common Usage CLI
 ---
 
 ## Curl Post JSON

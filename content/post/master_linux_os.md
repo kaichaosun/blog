@@ -1,6 +1,6 @@
 ---
 date: 2019-03-03
-title: The tutorial of Manjaro Linux usage
+title: The Tutorial of Manjaro Linux Usage
 ---
 
 [TOC]
