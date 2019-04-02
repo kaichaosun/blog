@@ -48,7 +48,7 @@ Why use k8s such thing:
 * Manage resources as a whole, reduce costs.
 
 ## Architecture in kubernetes
-![k8s-architecture](/static/k8s-architecture.png)
+![k8s-architecture](/static/k8s/k8s-architecture.png)
 
 ### Master node
 The master node is responsible for the management of the cluster. It response to the admin operations, reflect the configuration in certain worker node, ensure the cluster state is as expected. Master node contains following components:
