@@ -57,23 +57,159 @@ title: (WIP) 理解Ethereum智能合约开发
 * 金融衍生品交易
 * 去中心化的自治组织
 
-### Solidity 编程语言
+### Solidity编程语言
 
-所有上面那些复杂的应用场景，都是用Solidity编写的智能合约来完成的。和大多数高级编程语言类似，Solidity支持面向对象的编程范式，有完善的类型系统，是一种静态编程语言，语法和Javascript很类似。
+所有上面那些复杂的应用场景，都是用Solidity编写的智能合约来完成的。和大多数高级编程语言类似，Solidity支持面向对象的编程范式，有完善的类型系统，是一种静态编程语言，语法和Javascript很类似。你可以通过[交互式编程环境](https://github.com/raineorshine/solidity-repl)熟悉Solidity的基本用法
 
 #### 基础数据类型
 
-|      | 举例 | 解释 |
-| ---- | ---- | ---- |
-|      |      |      |
-|      |      |      |
-|      |      |      |
+基于按值传递的特性，通常也叫以下类型为[值类型](https://solidity.readthedocs.io/en/v0.5.6/types.html#value-types)。
+
+|                   | 举例                                       | 解释                                            | 操作                                       |
+| ----------------- | ------------------------------------------ | ----------------------------------------------- | ------------------------------------------ |
+| bool              | true / false                               |                                                 | !, &&, \|\|, ==, !=                        |
+| int / uint(8~256) | 8                                          | 默认是256位                                     | 比较，位移，算数加减乘除、取模`**`，位操作 |
+| address           | 0x7fD0030D3D21d17Fb4056DE319faD67A853b3C20 | 20字节，也即160位二进制码组成，代表以太坊的地址 | transfer, call                             |
+| contract          | contract MyContract {<br />    ...<br />}  | 合约类，是对函数和数据的封装                    | new                                        |
+| bytes(1~32)       | "foo"                                      | 定长字节数组                                    |                                            |
+| bytes             | "bar"                                      | 变长字节数组                                    |                                            |
+| string            | "this is a string"                         | UTF-8字符串                                     |                                            |
+
+#### 枚举类型
+
+例如：
+
+```javascript
+enum ActionChoices { GoLeft, GoRight, GoStraight, SitStill }
+```
+
+#### 函数
+
+函数可以是`public`和`internal`的，internal函数只能在合约类内部调用，public函数可以被其他合约类调用。
+
+可以通过`pure`, `view`, `payable`等关键字对函数进行约束：
+
+* view: 函数对于状态可读不可写
+* pure: 函数不会与外界状态发生交互，即不会读写状态
+* payable: 允许函数接收ether
+
+```javascript
+function f(uint num) public pure returns (uint) {
+  return num + 1;
+}
+```
+
+#### 引用类型
+
+由于不同的变量名可以指向同一个引用类型的数据，使用引用类型的时候需要格外小心。常用的引用类型有：
+
+* 数组，如`[uint(1), 2, 3]`
+
+* 结构体,
+
+  ```javascript
+  struct Funder {
+  	address addr;
+  	uint amount;
+  }
+  
+  Funder({addr: msg.sender, amount: msg.value});
+  ```
+
+* 哈希,
+
+  ```javascript
+  mapping(address => uint) public balances;
+  
+  balances[msg.sender] = newBalance;
+  ```
+
+引用类型通过关键字`memory`, `storage`,`calldata`来确定[存储位置](https://solidity.readthedocs.io/en/v0.5.6/types.html#data-location)。
+
+#### 条件控制
+
+即`if else`
+
+```javascript
+function max(uint a, uint b) internal pure returns (uint) {
+  if (a > b) {
+  	return a;
+	} else {
+  	return b;
+	}
+}
+```
+
+#### 循环控制
+
+即`for, while, break, continue`
+
+```javascript
+function sum(uint[] numbers) internal pure returns (uint) {
+  uint temp;
+  for (i=0; i<numbers.length; i++) {
+    temp += numbers[i];
+  }
+}
+```
+
+#### 异常处理
+
+Solidity使用异常来回退状态，常用的方式有`assert, aequire, revert`，抛出的异常不能由代码捕获处理。
+
+```javascript
+require(msg.value % 2 == 0, "Even value required.");
+
+assert(address(this).balance == balanceBeforeTransfer - msg.value / 2);
+
+function buy(uint amount) public payable {
+  if (amount > msg.value / 2 ether)
+    revert("Not enough Ether provided.");
+  // Alternative way to do it:
+  require(
+    amount <= msg.value / 2 ether,
+    "Not enough Ether provided."
+  );
+  // Perform the purchase.
+}
+```
+
+#### 面向对象特性
+
+**抽象合约类：**内部存在没有实现的方法。
+
+```javascript
+contract Feline {
+    function utterance() public returns (bytes32);
+}
+```
+
+**接口：**和其他语言类似，接口内的方法不能有实现。
+
+```javascript
+interface Token {
+    enum TokenType { Fungible, NonFungible }
+    struct Coin { string obverse; string reverse; }
+    function transfer(address recipient, uint amount) external;
+}
+```
+
+**继承和多态：**
+
+```javascript
+contract X {}
+contract A is X {}
+```
+
+**Libraries：** 请参考[这里](https://solidity.readthedocs.io/en/v0.5.6/contracts.html#libraries).
+
+## 常用开发框架
 
 
 
-## Demo
+## 应用场景练习
 
-Embark integrate with Ethereum, IPFS, etc.
+
 
 ## Reference
 
