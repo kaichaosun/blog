@@ -1,6 +1,6 @@
 ---
 date: 2018-06-22
-title: (WIP) 理解Ethereum智能合约开发
+title: 理解Ethereum智能合约开发
 ---
 
 [TOC]
@@ -205,13 +205,112 @@ contract A is X {}
 
 ## 常用开发框架
 
+**Truffle:** 基于以太坊平台的开源开发、测试、部署框架，可以一站式完成以太坊智能合约的开发。
+
+快速练习参考[官方资料](https://truffleframework.com/docs/truffle/quickstart)。
+
+常用命令：
+
+```shell
+# install
+npm install -g truffle
+
+# create project from template
+truffle unbox metacoin
+
+# run all the test
+truffle test
+
+# compile solidity to abi json file
+truffle compile
+
+# start personal ethereum like blockchain
+truffle develop
+
+# migrate the contract on blockchain
+turffle migrate
+
+# install dependency in ethpm.json
+truffle install
+
+# publish your own package
+truffle publish
+
+# user debugger
+truffle debug <transaction hash>
+```
+
+**Ganache:** 本地以太坊私有链客户端，用来本地模拟线上环境，用来本地部署、测试合约。
+
+**Drizzle：**DApp前端开发框架
+
+* 对合约数据响应式编程，包含state,event和transaction
+* 声明式，可以减少处理无用数据时的资源浪费。
+* 封装底层接口。
+
 
 
 ## 应用场景练习
+
+### 交易
+
+ConvertLib.sol:
+
+```javascript
+pragma solidity >=0.4.25 <0.6.0;
+
+library ConvertLib{
+	function convert(uint amount,uint conversionRate) public pure returns (uint convertedAmount)
+	{
+		return amount * conversionRate;
+	}
+}
+
+```
+
+MetaCoin.sol
+
+```javascript
+pragma solidity >=0.4.25 <0.6.0;
+
+import "./ConvertLib.sol";
+
+// This is just a simple example of a coin-like contract.
+// It is not standards compatible and cannot be expected to talk to other
+// coin/token contracts. If you want to create a standards-compliant
+// token, see: https://github.com/ConsenSys/Tokens. Cheers!
+
+contract MetaCoin {
+	mapping (address => uint) balances;
+
+	event Transfer(address indexed _from, address indexed _to, uint256 _value);
+
+	constructor() public {
+		balances[tx.origin] = 10000;
+	}
+
+	function sendCoin(address receiver, uint amount) public returns(bool sufficient) {
+		if (balances[msg.sender] < amount) return false;
+		balances[msg.sender] -= amount;
+		balances[receiver] += amount;
+		emit Transfer(msg.sender, receiver, amount);
+		return true;
+	}
+
+	function getBalanceInEth(address addr) public view returns(uint){
+		return ConvertLib.convert(getBalance(addr),2);
+	}
+
+	function getBalance(address addr) public view returns(uint) {
+		return balances[addr];
+	}
+}
+
+```
 
 
 
 ## Reference
 
-* 
+* [Truffle framework docs](https://truffleframework.com/docs)
 
