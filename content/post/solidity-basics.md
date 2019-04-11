@@ -13,15 +13,13 @@ title: 理解Ethereum智能合约开发
 
 另一方面，我们处在飞速发展的信息社会，各种媒介充斥在生活里的方方面面，**每个人在互联网上留下的一切痕迹，统称为数据，也是信息社会最有价值的**。如果你看过《[西部世界](<https://movie.douban.com/subject/2338055/>)》，你就能够明白数据的力量是有多强大和危险。越来越多的人，意识到这一点，并且不希望自己的数据尤其是私密数据被企业或组织控制。
 
-![data_is_gold]()
+![data_is_gold](https://github.com/dashengSun/drawio/blob/master/blog/solidity/western_world_start_pic.jpeg?raw=true)
 
 这些企业包含但不局限于支付宝、微信等等独角兽企业。**分布式账本技术去除了对中心化的服务或组织的依赖**，通过提供计算资源，每一个计算单元或者节点（简单的说就是一台计算机）共同维护着一个数据库或者账本，数据库中的数据可以被所有人读，但只有数据的拥有人才能进行转移或者处理，甚至可以进一步通过密码学对数据加密存储，只有持有秘钥的数据拥有人才能读取和处理数据。
 
-![node_connection]()
+![node_connection](https://github.com/dashengSun/drawio/blob/master/blog/solidity/ethereum_peer_network.jpg?raw=true)
 
 **数据的价值在于流动**。不论在什么系统中，交易都是极为重要的，但是交易必须是可控和合理的。任何交易的促成都需要建立在一定的共识基础上。比如中心化的服务支付宝，交易成功的标识是支付宝后台数据库完成价值的转移，并返回成功消息给用户，支付宝是整个交易周期的信任基础。种种原因导致我们并不是百分百地信任支付宝。而去中心化的系统不存在这样的信任中心角色，交易的最终确定是由整个系统基于一定的共识算法完成的，这些算法包括但不局限于工作量证明、权益证明、代理权益证明等。
-
-![flow_data_change]()
 
 在分布式账本技术中，我们通过移除信任中心，实现了**数据自由**；通过**开源代码**，建立了另一个维度的信任关系。这项技术，还处在很早期的阶段，需要通过**减缓交易的完成时间来提高安全性**；需要通过**花费大量的计算资源来达到彻底的去中心化**。
 
@@ -31,7 +29,7 @@ title: 理解Ethereum智能合约开发
 
 智能合约的作用也是同样的，只不过合约的形式发生了改变，不再是纸质签名，而是存储在分布式账本中的代码。
 
-![contract_in_code]()
+![contract_in_code](https://github.com/dashengSun/drawio/blob/master/blog/solidity/contract-in-code.png?raw=true)
 
 为什么要选择智能合约而不是传统合约形式呢？原因我总结大致有以下几个：
 
@@ -253,6 +251,8 @@ truffle debug <transaction hash>
 ## 应用场景练习
 
 ### 交易
+
+代码源自`metacoin` template.
 
 ConvertLib.sol:
 
