@@ -1,5 +1,5 @@
 ---
-date: 2018-06-22
+date: 2019-04-11
 title: 理解Ethereum智能合约开发
 ---
 
@@ -101,14 +101,14 @@ function f(uint num) public pure returns (uint) {
 
 由于不同的变量名可以指向同一个引用类型的数据，使用引用类型的时候需要格外小心。常用的引用类型有：
 
-* 数组，如`[uint(1), 2, 3]`
+* 数组，如 `[uint(1), 2, 3]`
 
 * 结构体,
 
   ```javascript
   struct Funder {
-  	address addr;
-  	uint amount;
+    address addr;
+    uint amount;
   }
   
   Funder({addr: msg.sender, amount: msg.value});
@@ -310,7 +310,7 @@ contract MetaCoin {
 
 
 
-## Reference
+## 参考
 
 * [Truffle framework docs](https://truffleframework.com/docs)
 
