@@ -12,8 +12,8 @@ disqusShortname = "whisperd"
 
 [params]
 	name = "Kaichao Sun"
-	description = "dasheng's blog"
-	bio = "Functional Programming - DevOps - Gopher"
+	description = "kaichao's blog"
+	bio = "Functional Programming - DLT - DevOps"
 	# Enter optionally your twitter account
 	twitter = "SunWillsuna"
 	enableRSS = true
