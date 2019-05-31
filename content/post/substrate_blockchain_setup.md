@@ -5,15 +5,15 @@ title: 使用Substrate搭建你的第一条区块链
 
 ## 为什么使用区块链
 
-比特币网络作为最早的区块链，已经存在了十年时间。在今天，区块链技术还没有像互联网那样深刻地改变着我们每个人的生活，但是它的优势已经在一些行业和领域展现出来，比如国际支付、金融衍生品交易、预测市场、去中心化自治组织等。
+比特币网络作为最早的区块链网络，已经存在了十年时间。在今天，区块链技术还没有像互联网那样深刻地改变着我们每个人的生活，但是它的优势已经在一些行业和领域展现出来，比如国际支付、金融衍生品交易、预测市场、去中心化自治组织等。
 
 区块链或者更准确的说是去中心账本，相对于传统互联网行业有其天生的优势，比如：
 
-* **永不离线** - 安全的公有链又全球数以万计的计算机节点共同维护，只要还有一个节点可供访问，数据就不会丢失。
-* **开源审查** - 绝大部分区块链应用的代码都是开源的，供全世界的开发人员审查，除了够提升代码质量，开源运动更为深远的意义在于通过分享促进着人类社会的进步。
+* **永不离线** - 安全的公有链又全球数以万计的计算机节点共同维护，理论上讲只要还有一个节点可供访问，数据就不会丢失。
+* **开源审查** - 绝大部分区块链应用的代码都是开源的，供全世界的开发人员审查，除了能够提升代码质量，开源运动更为深远的意义在于通过分享促进着人类社会的进步。
 * **数据加密** - 密码学技术是去中心账本的基石，保证数据不被篡改，让数据更加安全。
 * **保护隐私** - 每一个用户都是链上的一个账户，而账户的所有信息完全由掌握账户所对应私钥的用户控制着，除非用户自己公开或者交易数据，否则数据不会泄露。
-* **分享权益** - 用户可以通过参与到区块链的安全运转机制中，可以获取到原本只有中心化的企业才能拿到的权益。
+* **分享权益** - 用户可以通过参与到区块链的安全运转机制中，获取到原本只有中心化的企业才能拿到的权益。
 
 随着区块链技术的不断演进，交易成本、确认时间、能源消耗、安全性、互通性都得到了极大地提升，传统互联网企业在相同的产业领域将面临着具有以上所说优势的区块链企业的挑战。
 
@@ -21,7 +21,7 @@ title: 使用Substrate搭建你的第一条区块链
 
 处于劣势地位的小企业或者小团队，通过在链上实现业务，可以达到"四两拨千斤"的竞争优势。
 
-然而区块链的开发依赖多学科的知识技能，比如密码学、高效点对点网络、软件工程、经济学模型等等，小团队甚至是大企业都很难具备这样的人才资源，对应"上链"大多数人都是心有余而力不足。Substrate的出现就是为了解决这个问题。
+然而区块链的开发依赖多学科的知识技能，比如密码学、高效点对点网络、软件工程、经济学模型等等，小团队甚至是大企业都很难具备这样的人才资源，对于"上链"大多数人都是心有余而力不足。Substrate的出现就是为了解决这个问题。
 
 ## 什么是Substrate
 
@@ -29,7 +29,7 @@ title: 使用Substrate搭建你的第一条区块链
 
 使用Substrate构建的区块链，有一个额外的好处，就是可以轻易地连接到Parity的Polkadot公链网络，这一网络具有很多优势，比如**跨链交易**、**共享安全**等。
 
-Substrate是由Rust语言开发，而Rust最为一门高级静态编程语言，具有诸多优势，如内存安全、类型检查、支持编译为WASM、函数式友好、社区资料完善等优点。通过借助Rust的优良特性，Substrate的性能优良、可读性高。
+Substrate是由Rust语言开发，而Rust最为一门高级静态编程语言，具有诸多优势，如内存安全、类型检查、支持编译为WASM、函数式友好、社区资料完善等优点。通过借助Rust的优良特性，也使得Substrate的性能优良、可读性高。
 
 你也可以参考Substrate官方[参考文档](https://docs.substrate.dev/docs)来了解更多。
 
@@ -146,7 +146,7 @@ cargo build --release
 
 ![ui_local_node](https://imgur.com/MhHLXwb.png)
 
-选择Exporer，就能够看到最新的区块在不断产生。
+选择Explorer，就能够看到最新的区块在不断产生。
 
 下面，我们来发送一笔交易，选择Extrinsics，`submit the following extrinsic`选择为`balances` `transfer(dest, value)`，`dest: Address`选择为`BOB`，`value: Compact<Balance>`设置为你想转账的金额，之后点击Submit Transaction，几秒钟之后会弹出交易成功的提示，这个时候你可以看到Alice的金额减少了，当切换`using the selected account`为Bob之后，可以看到他的金额增加。
 
@@ -154,7 +154,7 @@ cargo build --release
 
 ### 本地多节点测试网络
 
-启动Alice节点：
+这里我们使用本地测试网络内置的账户，首先启动Alice节点：
 
 ```shell
 ./target/release/template-node \
@@ -170,7 +170,7 @@ cargo build --release
 命令行参数的涵义如下：
 
 * `--base-path /tmp/alice`：节点数据所存储的位置
-* `--chain=local`：指定了节点所处的网络类型，这里`local`表示本地测试网络，`dev`表示本地开发玩过，`staging`表示公开测试网络
+* `--chain=local`：指定了节点所处的网络类型，这里`local`表示本地测试网络，`dev`表示本地开发，`staging`表示公开测试网络
 * `--key //Alice`：模块节点程序启动时需要私钥，这里我们用了预置的Alice用户私钥
 * `--port 30333`：指定p2p协议的TCP端口
 * `--telemetry-url ws://telemetry.polkadot.io:1024`：将节点的监控数据发送到指定的监控服务器
@@ -224,7 +224,7 @@ Phrase `gas ride shoe victory oil young music trend kingdom rookie south harbor`
 
 账户2：
 
-```
+```shell
 Phrase `real during evidence worry mountain plastic depth desert actress infant age pill` is account:
   Seed: 0x16208851b59f7c6a383a70342fa0893169c7c3190c543d44bd42833f61e54a56
   Public key (hex): 0xd6147f4bbb0eeb925e61b31fbed45ab1e3c45fed8d36ce4161c99956dfdf8f9b
@@ -245,7 +245,7 @@ Substrate区块链的初始启动信息在`chainspec`的json文件中维护着�
 
 编辑`localspec.json`，修改`authorities`为新生成用户的地址，其它不用修改：
 
-```
+```json
 "consensus": {
 	"authorities": [
 		"5Ggm2DMCG1LRcXUjGE6toVmyHKVSNutzSbUrvQv5gbr5BC6S",
