@@ -98,3 +98,21 @@ git branch -D -- --track
 npm config set registry=http://registry.npm.taobao.org
 ```
 
+## Rust and Cargo
+
+### Source
+
+Configiure china source, modify the file `$HOME/.cargo/config`
+
+```
+[source.crates-io]
+registry = "https://github.com/rust-lang/crates.io-index"
+replace-with = 'ustc'
+[source.ustc]
+registry = "git://mirrors.ustc.edu.cn/crates.io-index"
+```
+
+### cargo expand
+
+<https://github.com/dtolnay/cargo-expand>
+
