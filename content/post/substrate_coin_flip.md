@@ -1,4 +1,7 @@
-# Substrate应用 - 抛硬币游戏(一)
+---
+date: 2019-08-05
+title: Substrate应用 - 抛硬币游戏(一)
+---
 
 **当我们应用区块链解决生活中问题的时候，它的价值就产生了。**如果还不清楚Substrate的基本概念，在开始本文的阅读之前，我希望你能大概浏览Substrate开发者中心的文档：https://substrate.dev 或者参考之前的教程[《使用Substrate搭建你的第一条区块链》](https://zhuanlan.zhihu.com/p/67580341)来了解Substrate相关的基础知识。本文会从零开始开发一条承载具体业务的区块链应用，即抛硬币游戏。
 
@@ -392,6 +395,8 @@ fn play(origin) -> Result {
 
 这里我们定义了新的变量`winnings`保存获胜信息，初始值为`0`，如果获胜则更新为`pot`即奖池中的值。在函数返回`Ok(())`之前触发该事件。
 
+
+
 ## 总结
 
 现在已经完成了所有的代码，可以进行简单的测试。同样地，访问 [Polkadot/Substrate UI](https://github.com/polkadot-js/apps) 在Extrinsics页面中调用上面定义的函数；之后在Chain state页面查询对应的存储项。遇到问题可以参考这里的 [“抛硬币”完整代码](https://github.com/shawntabrizi/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/demo.rs)。
@@ -402,8 +407,11 @@ fn play(origin) -> Result {
 
 公众号：沐风自语
 
+
+
 ## Reference
 
-* [Using the Substrate Scripts](https://substrate.dev/docs/en/getting-started/using-the-substrate-scripts)
 
+
+* [Using the Substrate Scripts](https://substrate.dev/docs/en/getting-started/using-the-substrate-scripts)
 * [Creating Your First Substrate chain](https://substrate.dev/docs/en/tutorials/creating-your-first-substrate-chain)
