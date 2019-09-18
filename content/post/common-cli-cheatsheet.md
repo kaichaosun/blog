@@ -35,7 +35,23 @@ mongod --dbpath ~/data/mongodb
 zip filename.zip file1 file2
 ```
 
+```shell
+tar -czvf name-of-archive.tar.gz /path/to/directory-or-file
+```
+
+- -c: **C**reate an archive.
+- -z: Compress the archive with g**z**ip.
+- -v: Display progress in the terminal while creating the archive, also known as “**v**erbose” mode. The v is always optional in these commands, but it’s helpful.
+- -f: Allows you to specify the **f**ilename of the archive.
+
+```
+tar -xzvf archive.tar.gz
+```
+
+
+
 ## SSH / scp
+
 ```
 // setup tunel
 ssh -L 8002:target-host-ip:80 -i ~/.ssh/ssh-key hostname@host-ip
@@ -92,6 +108,18 @@ git rebase -i commit-id // p to pick, r to change msg
 git branch -D -- --track
 ```
 
+### Submodule
+
+To remove a submodule
+
+<https://gist.github.com/myusuf3/7f645819ded92bda6677>
+
+```
+git submodule status
+```
+
+
+
 ## Nodejs npm mirror
 
 ```
@@ -115,4 +143,6 @@ registry = "git://mirrors.ustc.edu.cn/crates.io-index"
 ### cargo expand
 
 <https://github.com/dtolnay/cargo-expand>
+
+
 
