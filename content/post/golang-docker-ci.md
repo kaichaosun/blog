@@ -12,7 +12,7 @@ Web应用长期以来是Ruby、Java、PHP等开发语言的战场。
 - PHP，TL;DR
 
 本文实现了一个最小化web应用，以此来了解Golang web的生态，通过使用Docker隔离开发环境，
-使用Posgres持久化数据，源代码请参考[这里](https://github.com/dashengSun/golang-web-starter)
+使用Posgres持久化数据，源代码请参考[这里](https://github.com/kaichaosun/golang-web-starter)
 
 ---
 ## Why Go?

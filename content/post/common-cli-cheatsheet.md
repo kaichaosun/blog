@@ -67,6 +67,9 @@ scp -i ~/.ssh/ssh-key root@host:~/hello ./
 ```
 // docker download file
 docker cp <containerId>:/file/path/within/container /host/path/target
+
+// show sha256
+docker inspect --format='{{index .RepoDigests 0}}' $IMAGE
 ```
 
 ## Journalctl

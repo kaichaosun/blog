@@ -46,7 +46,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://dashengsun.github.io/
+url: https://kaichaosun.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -63,7 +63,7 @@ $ npm install hexo-deployer-git --save
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:dashengSun/dashengSun.github.io.git
+  repo: git@github.com:kaichaosun/kaichaosun.github.io.git
   branch: master
 ```
 
@@ -89,7 +89,7 @@ hexo deploy
 
 ![parse domain](/static/hexo/domain-name.png)
 
-*注意: `dashengsun.github.io.`后有`.`,主机纪录为`@`*
+*注意: `kaichaosun.github.io.`后有`.`,主机纪录为`@`*
 
 All done, enjoy your blog travel.
 

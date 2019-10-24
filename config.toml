@@ -1,5 +1,5 @@
 # Site settings
-baseurl = "https://dashengsun.github.io/"
+baseurl = "https://kaichaosun.github.io/"
 languageCode = "en-us"
 title = "Whisperd"
 theme = "hugo-cactus-theme"
@@ -49,5 +49,5 @@ disqusShortname = "whisperd"
 
 # Add additional social link entries underneath
 [social]
-    twitter  = "https://twitter.com/SunWillsuna"
-    github   = "https://github.com/dashengSun"
+    twitter  = "https://twitter.com/kaichaosun"
+    github   = "https://github.com/kaichaosun"

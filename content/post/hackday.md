@@ -47,7 +47,7 @@ REA很多CI跑在 Bamboo 和 Buildkite上，每个平台提供的监控数据和
 - Gulugulu
 
 用过 Bilibili 吧，弹幕啊，吐槽啊，段子手啊，想象一下大家一起吐槽百度主站的情形，
-一个字形容，爽。Gulugulu就有这样的功能，只要引入一个Javascript文件，done。具体请参考Github [gulugulu](https://github.com/jcouyang/gulugulu/)和[gulugulu-chrome](https://github.com/dashengSun/gulugulu-chrome)。
+一个字形容，爽。Gulugulu就有这样的功能，只要引入一个Javascript文件，done。具体请参考Github [gulugulu](https://github.com/jcouyang/gulugulu/)和[gulugulu-chrome](https://github.com/kaichaosun/gulugulu-chrome)。
 
 ---
 
