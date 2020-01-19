@@ -48,6 +48,12 @@ tar -czvf name-of-archive.tar.gz /path/to/directory-or-file
 tar -xzvf archive.tar.gz
 ```
 
+## cp
+
+```shell
+rsync -av --progress /Users/kcsun/github/uiux/sourcefoder/ ./ --exclude .git
+```
+
 
 
 ## SSH / scp
