@@ -90,15 +90,15 @@ Substrate作为一个通用的区块链应用开发框架，充分考虑了上�
 * 区块的总权重：1,000,000,000
 * 可用区块比：75%，即Normal交易最多只占用75%的区块资源，Operational类型的交易则可以占用100%的区块资源，新的交易如果导致对应资源使用率超过阈值后，会被拒绝。
 
-交易（也称为可调用函数）权重设置的方式为：
+交易（也称为可调用函数）权重设置的四种方式为：
 
-1. 缺省，使用权重的默认值10,000，参考[代码](https://github.com/paritytech/substrate/blob/master/frame/support/src/weights.rs#L223)。
+第一，缺省，使用权重的默认值10,000，参考[代码](https://github.com/paritytech/substrate/blob/master/frame/support/src/weights.rs#L223)。
 
-2. 设置固定权重值和交易级别，[SimpleDispatchInfo](https://substrate.dev/rustdocs/master/frame_support/weights/enum.SimpleDispatchInfo.html)定义了固定权重值的几种方式，
+第二，设置固定权重值和交易级别，[SimpleDispatchInfo](https://substrate.dev/rustdocs/master/frame_support/weights/enum.SimpleDispatchInfo.html)定义了固定权重值的几种方式，
 
-   * FixedNormal，固定权重且为Normal级别的交易
-   * InsecureFreeNormal，零权重且为Normal级别的交易
-   * FixedOperational，固定权重且为Operational级别的交易
+* FixedNormal，固定权重且为Normal级别的交易
+* InsecureFreeNormal，零权重且为Normal级别的交易
+* FixedOperational，固定权重且为Operational级别的交易
 
 **如何使用固定权重值**，演示代码如下，完整代码请参考[example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs#L462-L491)：
 
@@ -116,11 +116,11 @@ fn accumulate_dummy(origin, increase_by: T::Balance) -> DispatchResult {
 }
 ```
 
-3. 自定义权重计算方法，根据可调用函数的参数进行动态计算，需要一个自定义的结构体，实现`WeighData`、`ClassifyDispatch`和`PaysFee`接口。
+第三，自定义权重计算方法，根据可调用函数的参数进行动态计算，需要一个自定义的结构体，实现`WeighData`、`ClassifyDispatch`和`PaysFee`接口。
 
-   * WeighData：当可调用函数使用某个自定义的权重计算方法时，用来获取该可调用函数的参数列表，并进行相关的计算得出权重。
-   * ClassifyDispatch：获取可调用函数的参数列表，合理地判断出不同的交易级别即Normal/Operational。
-   * PaysFee: 可以通过设置`pays_fee`为false，来避免收取任何交易费用（小费除外），适用于Operational交易存在权重值，但不收取交易费的场景。
+* WeighData：当可调用函数使用某个自定义的权重计算方法时，用来获取该可调用函数的参数列表，并进行相关的计算得出权重。
+* ClassifyDispatch：获取可调用函数的参数列表，合理地判断出不同的交易级别即Normal/Operational。
+* PaysFee: 可以通过设置`pays_fee`为false，来避免收取任何交易费用（小费除外），适用于Operational交易存在权重值，但不收取交易费的场景。
 
 **如何自定义一个权重计算方法**，[example pallet](https://github.com/paritytech/substrate/blob/master/frame/example/src/lib.rs#L502) 中对应的演示代码为：
 
@@ -168,7 +168,7 @@ fn set_dummy(origin, #[compact] new_value: T::Balance) {
 }}
 ```
 
-4. 使用Substrate预定义的[`FunctionOf`](https://substrate.dev/rustdocs/master/frame_support/weights/struct.FunctionOf.html)结构体，适用于只有权重需要自定义进行计算，而交易级别固定的情况。FunctionOf接收三个数据，a) 一个根据参数计算权重的closure表达式; b) 固定交易级别或计算交易级别的closure; c) 设置`pays_fee`的布尔值。
+第四，使用Substrate预定义的[`FunctionOf`](https://substrate.dev/rustdocs/master/frame_support/weights/struct.FunctionOf.html)结构体，适用于只有权重需要自定义进行计算，而交易级别固定的情况。FunctionOf接收三个数据，a) 一个根据参数计算权重的closure表达式; b) 固定交易级别或计算交易级别的closure; c) 设置`pays_fee`的布尔值。
 
 **如何使用FunctionOf结构体**：
 
@@ -217,6 +217,14 @@ impl Convert<Weight, Balance> for WeightToFee {
 
 * 完全没有交易费用，由各个参与方自发组建去中心的网络；
 * 对不同的稀缺资源收取一定的租赁费用。
+
+
+
+## 更多内容
+
+官方文档：[substrate.dev](https://substrate.dev/)
+
+Parity介绍：[parity.io](https://www.parity.io/)
 
 
 
