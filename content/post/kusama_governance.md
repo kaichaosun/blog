@@ -83,7 +83,7 @@ Kusama网络采用了[三院制（Tricameral）](https://en.wikipedia.org/wiki/T
 ### 民主公投
 
 得益于Substrate提供的无分叉升级方式，Kusama网络上任何runtime逻辑的修改，都可以直接通过链上升级来实现。这些修改必须提交议案进行公投，如果公投通过，网络会在一段时间之后自动升级并部署此项修改。[polkadot-js/apps](https://polkadot.js.org/apps/)提供的公投页面如下，
-![democracy_page](https://i.imgur.com/hqLEmDG.png)
+![democracy_page](/static/governance/fast_track.png)
 
 **公众提交议案的流程：**
 
