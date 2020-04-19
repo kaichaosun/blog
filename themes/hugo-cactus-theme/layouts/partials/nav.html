@@ -10,7 +10,11 @@
 	<!-- <a href="/resume">Resume</a> -->
 
 	{{ if .Site.Params.enableEmailSubscription }}
-		<a class="cta" href="{{ .Site.Params.EmailSubscriptionLink }}">{{ .Site.Params.emailSubscription | default "Email Subscribe" }}</a>
+		{{ if eq .URL "/about/" }}
+			<a class="cta" href="{{ .Site.Params.EmailSubscriptionAbsoluteLink }}">{{ .Site.Params.emailSubscription | default "Email Subscribe" }}</a>
+		{{ else }}
+			<a class="cta" href="{{ .Site.Params.EmailSubscriptionLink }}">{{ .Site.Params.emailSubscription | default "Email Subscribe" }}</a>
+		{{ end }}
 	{{ end }}
 
 	{{ if .Site.Params.enableRSS }}

@@ -44,6 +44,7 @@ disqusShortname = "whisperd"
 	subtitle404 = ""
 	emailSubscription = "Subscribe"
 	EmailSubscriptionLink = "#email-subscribe"
+	EmailSubscriptionAbsoluteLink = "https://kaichao.substack.com/embed"
 
 	# Choose a font for the social icons in the footer. Either "mono-social" or "font-awesome"
 	iconFont = "font-awesome"
