@@ -13,10 +13,11 @@ disqusShortname = "whisperd"
 [params]
 	name = "Kaichao Sun"
 	description = "kaichao's blog"
-	bio = "Functional Programming - DLT - DevOps"
+	bio = "Blockchain - Functional Programming - DevOps"
 	# Enter optionally your twitter account
-	twitter = "SunWillsuna"
-	enableRSS = true
+	twitter = "kaichaosun"
+	enableRSS = false
+	enableEmailSubscription = true
 
 	# Integrate Javascript files or stylesheets by adding the url to the external assets or by
 	# linking local files with their path relative to the static folder, e.g. "css/styles.css"
@@ -28,7 +29,7 @@ disqusShortname = "whisperd"
 
 	# Navigation links
 	home = ""
-	subscribe = ""
+	# rss_subscription = ""
 	# Pagination links
 	olderPosts = ""
 	newerPosts = ""
@@ -41,6 +42,8 @@ disqusShortname = "whisperd"
 	# 404 page
 	title404 = ""
 	subtitle404 = ""
+	emailSubscription = "Subscribe"
+	EmailSubscriptionLink = "#email-subscribe"
 
 	# Choose a font for the social icons in the footer. Either "mono-social" or "font-awesome"
 	iconFont = "font-awesome"

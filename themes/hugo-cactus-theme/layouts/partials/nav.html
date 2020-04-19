@@ -9,7 +9,12 @@
 
 	<!-- <a href="/resume">Resume</a> -->
 
-	{{ if .Site.Params.enableRSS }}
-		<a class="cta" href="{{ .Site.RSSLink }}">{{ .Site.Params.subscribe | default "Subscribe" }}</a>
+	{{ if .Site.Params.enableEmailSubscription }}
+		<a class="cta" href="{{ .Site.Params.EmailSubscriptionLink }}">{{ .Site.Params.emailSubscription | default "Email Subscribe" }}</a>
 	{{ end }}
+
+	{{ if .Site.Params.enableRSS }}
+		<a class="cta" href="{{ .Site.RSSLink }}">{{ .Site.Params.rss_subscription | default "RSS" }}</a>
+	{{ end }}
+	
 </nav>
