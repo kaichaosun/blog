@@ -55,3 +55,7 @@ disqusShortname = "whisperd"
 [social]
     twitter  = "https://twitter.com/kaichaosun"
     github   = "https://github.com/kaichaosun"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
