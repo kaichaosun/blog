@@ -1,6 +1,8 @@
 ---
 date: 2020-04-30
 title: 如何学习区块链技术
+tags: ["Blockchain"]
+categories: ["Blockchain"]
 ---
 
 学习区块链技术和任何其它任何技术一样，**没有捷径**。

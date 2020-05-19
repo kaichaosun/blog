@@ -1,6 +1,8 @@
 ---
 date: 2020-04-02
 title: Substrate代码导读：node-template
+tags: ["Blockchain", "Substrate"]
+categories: ["Blockchain"]
 ---
 
 通过本文，你会了解到，

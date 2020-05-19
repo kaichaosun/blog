@@ -1,6 +1,8 @@
 ---
 date: 2019-03-30
 title: Cheatsheet for Shell Programming
+tags: ["Tools"]
+categories: ["DevOps"]
 ---
 
 ## Variables

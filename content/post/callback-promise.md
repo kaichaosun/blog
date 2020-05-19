@@ -1,6 +1,8 @@
 ---
 date: 2017-04-05
 title: 理解 Javascript 的几种异步模式
+tags: ["Javascript"]
+categories: ["DevOps"]
 ---
 
 Javacript 提供了基于回调的异步编程模式，如回调函数，Promise对象，Async Function 等。下面是我在学习过程中总结的

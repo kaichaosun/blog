@@ -1,6 +1,8 @@
 ---
 date: 2019-10-03
 title: 抛硬币游戏(二)：编写测试和UI
+tags: ["Blockchain", "Substrate"]
+categories: ["Blockchain"]
 ---
 
 在之前的文章 [Substrate应用 - 抛硬币游戏（一）](https://zhuanlan.zhihu.com/p/76815437)，我们完成了runtime的开发，从而实现了一个自定义功能（即抛硬币游戏）的区块链网络。现在让我们来看一下如何编写测试代码和UI，你也可以直接看最终的[模块代码](https://github.com/kaichaosun/substrate-coin-flip/blob/master/runtime/src/mymodule.rs)和[UI代码](https://github.com/kaichaosun/substrate-front-end-template/blob/coinflip/src/CoinFlipGame.js)。

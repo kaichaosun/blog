@@ -1,6 +1,8 @@
 ---
 date: 2019-01-02
 title: Cheatsheet for Common Usage CLI
+tags: ["Tools", "DevOps"]
+categories: ["DevOps"]
 ---
 
 ## Curl Post JSON

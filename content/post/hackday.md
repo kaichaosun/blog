@@ -1,6 +1,8 @@
 ---
 date: 2017-01-07
 title: Hackday是一种怎样的体验？
+tags: ["Thoughts"]
+categories: ["Thoughts"]
 ---
 
 加入 Thoughtworks 之后，经历了REA (realestate.com.au) 三次 Hackday，感受很多，我觉得有必要和大家分享一下这么优秀的想法和活动。

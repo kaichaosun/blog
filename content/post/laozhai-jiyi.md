@@ -1,6 +1,8 @@
 ---
 date: 2019-02-06
 title: 老宅记忆
+tags: ["Thoughts"]
+categories: ["Thoughts"]
 ---
 
 **时间大概是我遇到过最抽象的概念。**

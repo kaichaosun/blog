@@ -1,6 +1,8 @@
 ---
 date: 2017-07-05
 title: Golang web 开发
+tags: ["Go"]
+categories: ["DevOps"]
 ---
 
 ## 背景

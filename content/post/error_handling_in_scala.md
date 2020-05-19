@@ -1,6 +1,8 @@
 ---
 date: 2019-01-17
 title: Understand Error Handling in Scala
+tags: ["FP", "Scala"]
+categories: ["Functional Programming"]
 ---
 
 ## What's Exception

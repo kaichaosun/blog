@@ -1,6 +1,8 @@
 ---
 date: 2019-04-25
 title: Why OO Sucks
+tags: ["FP"]
+categories: ["Functional Programming"]
 ---
 
 原文为英文，由 [Joe Armstrong](https://en.wikipedia.org/wiki/Joe_Armstrong_(programmer)) 撰写。我的翻译如下。

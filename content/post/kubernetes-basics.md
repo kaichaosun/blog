@@ -1,6 +1,8 @@
 ---
 date: 2018-06-21
 title: Kubernetes basics
+tags: ["DevOps"]
+categories: ["DevOps"]
 ---
 
 ## Background & why kubernetes

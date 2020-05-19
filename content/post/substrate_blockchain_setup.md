@@ -1,6 +1,8 @@
 ---
 date: 2019-05-28
 title: 使用Substrate搭建你的第一条区块链
+tags: ["Blockchain", "Substrate"]
+categories: ["Blockchain"]
 ---
 
 ## 为什么使用区块链

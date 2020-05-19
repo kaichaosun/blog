@@ -1,6 +1,8 @@
 ---
 date: 2020-01-19
 title: Substrate存储数据类型概览
+tags: ["Blockchain", "Substrate"]
+categories: ["Blockchain"]
 ---
 
 通过本文，你将学会：

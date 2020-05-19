@@ -1,6 +1,8 @@
 ---
 date: 2017-12-17
 title: 如何部署 IOTA 的 IRI headless 全节点
+tags: ["Blockchain"]
+categories: ["Blockchain"]
 ---
 
 ## 什么是 IOTA

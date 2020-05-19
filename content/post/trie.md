@@ -1,6 +1,8 @@
 ---
 date: 2020-03-17
 title: 理解Substrate数据存储的底层实现Merkle Patricia Trie
+tags: ["Blockchain", "Substrate"]
+categories: ["Blockchain"]
 ---
 
 [TOC]

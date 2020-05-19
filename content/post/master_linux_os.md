@@ -1,6 +1,8 @@
 ---
 date: 2019-03-03
 title: The Tutorial of Manjaro Linux Usage
+tags: ["Tools"]
+categories: ["DevOps"]
 ---
 
 [TOC]

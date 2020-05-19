@@ -1,6 +1,8 @@
 ---
 date: 2020-04-16
 title: Kusama系列：如何进行链上治理
+tags: ["Blockchain", "Substrate"]
+categories: ["Blockchain"]
 ---
 
 通过本文，你会了解到：

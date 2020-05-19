@@ -1,6 +1,8 @@
 ---
 date: 2019-08-05
 title: Substrate应用 - 抛硬币游戏(一)
+tags: ["Blockchain", "Substrate"]
+categories: ["Blockchain"]
 ---
 
 **当我们应用区块链解决生活中问题的时候，它的价值就产生了。**如果还不清楚Substrate的基本概念，在开始本文的阅读之前，我希望你能大概浏览Substrate开发者中心的文档：https://substrate.dev 或者参考之前的教程[《使用Substrate搭建你的第一条区块链》](https://zhuanlan.zhihu.com/p/67580341)来了解Substrate相关的基础知识。本文会从零开始开发一条承载具体业务的区块链应用，即抛硬币游戏。

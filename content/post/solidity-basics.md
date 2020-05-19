@@ -1,6 +1,8 @@
 ---
 date: 2019-04-11
 title: 理解Ethereum智能合约开发
+tags: ["Blockchain", "Ethereum"]
+categories: ["Blockchain"]
 ---
 
 [TOC]

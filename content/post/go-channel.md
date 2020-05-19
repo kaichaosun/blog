@@ -1,6 +1,8 @@
 ---
 date: 2017-07-29
 title: 理解Golang并发编程
+tags: ["Go"]
+categories: ["DevOps"]
 ---
 
 ## concurrency vs parallelism

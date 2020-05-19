@@ -1,6 +1,8 @@
 ---
 date: 2017-01-04
 title: 使用 Hexo 搭建个人博客
+tags: ["Tools"]
+categories: ["DevOps"]
 ---
 
 **Note:** 已经使用Hugo创建博客。
