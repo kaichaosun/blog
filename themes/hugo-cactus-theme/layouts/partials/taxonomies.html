@@ -1,0 +1,7 @@
+<div class="taxonomies">
+    <ul>
+        {{ range $name, $items := .Site.Taxonomies.categories }}
+            <li><a href="{{ "categories/" | relLangURL }}{{ $name | urlize | lower }}">{{ $name | title | humanize }}</a></li>
+        {{ end }}
+    </ul>
+</div>

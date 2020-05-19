@@ -13,7 +13,7 @@ disqusShortname = "whisperd"
 [params]
 	name = "Kaichao Sun"
 	description = "kaichao's blog"
-	bio = "Blockchain - Functional Programming - DevOps"
+	bio = "Enthuse about FP, DLT."
 	# Enter optionally your twitter account
 	twitter = "kaichaosun"
 	enableRSS = false
@@ -57,5 +57,5 @@ disqusShortname = "whisperd"
     github   = "https://github.com/kaichaosun"
 
 [taxonomies]
-  category = "categories"
-  tag = "tags"
+  	category = "categories"
+  	tag = "tags"
