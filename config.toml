@@ -10,6 +10,8 @@ googleAnalytics = "UA-128168145-1"
 # Disable comments by leaving disqusShortname empty
 disqusShortname = "whisperd"
 
+paginate = 11
+
 [params]
 	name = "Kaichao Sun"
 	description = "kaichao's blog"
