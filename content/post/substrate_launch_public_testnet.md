@@ -349,7 +349,7 @@ Chain Spec 包含了一系列配置信息，节点程序用它来连接指定的
    接着，就可以使用 `ChainSpec::from_genesis` 将通用的配置信息和 GenesisConfig 组合成Chain Spec，这里bootnodes的信息可以为空，在我们启动bootnode并获取到它的PeerId（打印在命令行输出）之后，修改Chain Spec 的 JSON 文件即可：
 
    ```rust
-   pub fn tao_staging_testnet_config() -> ChainSpec {
+   pub fn staging_testnet_config() -> ChainSpec {
        let boot_nodes = vec![];
    
        ChainSpec::from_genesis(
@@ -412,7 +412,7 @@ Chain Spec 包含了一系列配置信息，节点程序用它来连接指定的
    ```json
    {
      "name": "My Staging Testnet",
-    id": "my_staging",
+     "id": "my_staging",
      "chainType": "Live",
      "bootNodes": [
        "/ip4/your-ip-address/tcp/30333/p2p/12D3KooWMmsXriTjqeiw4Us9LLgzRGiUmq8f5frBvyJgaYAwNcrU"
