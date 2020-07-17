@@ -31,6 +31,12 @@ SELECT UNIX_TIMESTAMP();
 mongod --dbpath ~/data/mongodb
 ```
 
+### PostgreSQL
+
+```shell
+pg_dump --dbname=postgresql://user:admin@127.0.0.1:5432/database-name --table=my-table --data-only --column-inserts > data.sql
+```
+
 ## Zip / tar
 
 ```
