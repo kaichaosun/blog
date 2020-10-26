@@ -125,6 +125,11 @@ git rebase -i commit-id // p to pick, r to change msg
 git branch -D -- --track
 ```
 
+**When branch and tag use a same name:**
+```shell
+git push origin refs/heads/v2.0.0:refs/heads/v2.0.0
+```
+
 ### Submodule
 
 To remove a submodule
