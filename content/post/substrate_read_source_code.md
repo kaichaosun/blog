@@ -1,6 +1,6 @@
 ---
-date: 2020-01-06
-title: 如何学习substrate源码
+date: 2021-01-06
+title: 阅读Substrate源码的方法
 tags: ["Blockchain", "Substrate"]
 categories: ["Blockchain"]
 ---
