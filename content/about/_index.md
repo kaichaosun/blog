@@ -13,4 +13,7 @@ As a Backend Developer, I have comprehensive technical skill set and expertise a
 
 Email: kaichaosuna@gmail.com
 
-Wechat: weixin415148673
+[Github](https://github.com/kaichaosun) [Twitter](https://twitter.com/kaichaosun)
+
+微信公众号: 守护进程
+![public_account](/static/about/qrcode_for_shouhujincheng.jpg)
