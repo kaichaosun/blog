@@ -13,7 +13,8 @@ As a Backend Developer, I have comprehensive technical skill set and expertise a
 
 Email: kaichaosuna@gmail.com
 
-[Github](https://github.com/kaichaosun) [Twitter](https://twitter.com/kaichaosun)
+Follow me on [Github](https://github.com/kaichaosun) and [Twitter](https://twitter.com/kaichaosun).
 
 微信公众号: 守护进程
+
 ![public_account](/static/about/qrcode_for_shouhujincheng.jpg)
