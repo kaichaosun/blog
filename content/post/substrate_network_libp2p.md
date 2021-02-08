@@ -10,11 +10,11 @@ categories: ["Blockchain"]
 
 * 点对点通信的特点；
 * libp2p的基本介绍；
-* 以及Substrate如何使用libp2p实现的点对点通信。
+* 以及Substrate如何使用libp2p实现点对点的通信。
 
 ## 点对点通信
 
-在Web2.0时代，绝大多数互联网应用采用了基于[TCP/IP](https://en.wikipedia.org/wiki/Internet_protocol_suite)的“客户端-服务器”的通信架构，在客户端采集数据并发送给服务器，服务器存储和处理数据，客户端进而获取并使用这些处理后的数据。这种模式支撑了互联网近三十年的蓬勃发展，在给普通用户提供便利的同时，也出现了各种各样的问题，比如：
+在Web2.0时代，绝大多数互联网应用采用了基于[TCP/IP](https://en.wikipedia.org/wiki/Internet_protocol_suite)的“客户端-服务器”通信架构，在客户端采集数据并发送给服务器，服务器存储和处理数据，客户端进而获取并使用这些处理后的数据。这种模式支撑了互联网近三十年的蓬勃发展，在给普通用户提供便利的同时，也出现了各种各样的问题，比如：
 
 * 泄露用户隐私；
 * 贩卖用户数据；
@@ -24,9 +24,13 @@ categories: ["Blockchain"]
 * 过度利用用户心理，无节制地占据用户的时间；
 * ......
 
+**客户端-服务器通信模型如下图：**
+
 ![client-server](/static/libp2p/client_server.png)
 
-在为以上问题寻找解决方案时，点对点（即peer to peer）的通信机制逐渐走进了技术先驱们的视野。在互联网早期的时候，点对点通信主要用于文件共享，如音乐共享服务Napster和流媒体下载服务BitTorrent。点对点的服务更加广泛的使用，还需要一定的治理机制，来处理资源的版权问题和现实世界的监管，此类内容不是本文的重点，不做过多地介绍。
+在为以上问题寻找解决方案时，点对点（即peer to peer）的通信机制逐渐走进了技术先驱们的视野。在互联网早期的时候，点对点通信主要用于文件共享，如音乐共享服务Napster和流媒体下载服务BitTorrent。点对点服务更加广泛的应用，还需要一定的治理机制，来处理资源的版权问题和现实世界的监管，这些不是本文的重点，不做过多地介绍。
+
+**点对点通信模型如下图：**
 
 ![peer-to-peer](/static/libp2p/peer_to_peer.png)
 
@@ -52,11 +56,11 @@ categories: ["Blockchain"]
 
 以上列出的这些技术要点/需求并不会出现在每个点对点应用里，大多数只会使用其中的一部分功能，尽管如此，还是存在严重地重复造轮子的现象。也有一些应用为了避免重复开发，选择了fork已有开源应用的功能代码，这种方式引入了原有应用的技术债，难于定制和扩展。
 
-复杂多变的网络拓扑和膨胀的应用状态导致了点对点应用的开发、推广和普及都极为困难，出现一个高度模块化的点对点通信开发框架也就不足为奇，也就是接下来我们要了解的libp2p。
+复杂多变的网络拓扑和膨胀的应用状态导致了点对点应用的开发、推广和普及都极为困难，出现一个高度模块化的点对点通信开发框架也就不足为奇，也就是接下来我们要介绍的libp2p。
 
 ## Libp2p 介绍
 
-Libp2p是一个开发点对点应用的框架，它最早源于去中心的文件共享服务IPFS，把网络通信相关的内容抽离并重新设计，形成了现在的libp2p，目前比较成熟的几个语言版本包括js-libp2p、go-libp2p、rust-libp2p，并且定义了一套参考规范，不同语言的实现版本只要符合这一参考规范，就可以实现互通信。
+Libp2p是一个开发点对点应用的框架，它最早源于去中心的文件共享服务IPFS，把网络通信相关的内容抽离并重新设计，形成了现在的libp2p，目前比较成熟的几个语言版本包括js-libp2p、go-libp2p、rust-libp2p，并且定义了一套参考规范，不同语言的实现版本只要符合这一规范，就可以实现互通信。
 
 Libp2p提供的核心功能包括，
 
@@ -70,6 +74,8 @@ Libp2p支持的底层（传输层）协议包括TCP/IP、UDP、WebSocket、QUIC�
 为了提升连接的利用率以及应对复杂的网络场景如各种形式的防火墙和NAT，对建立的底层连接进行多路复用十分有必要，stream就是可实现复用的一种上层连接形式，它可以是双向的，也可以是单向的。
 
 QUIC协议有内置的安全和复用组件，对于没有此类功能的协议，使用libp2p可以对原始连接进行upgrade，添加所需的安全和可复用的套件，安全套件有[secio](https://docs.rs/libp2p-secio/0.22.0/libp2p_secio/)、[Noise](https://docs.rs/libp2p/0.28.1/libp2p/noise/index.html)，可复用套件有[yamux](https://docs.rs/libp2p-yamux/0.25.0/libp2p_yamux/)和[mplex](https://docs.rs/libp2p-mplex/0.22.0/libp2p_mplex/)。
+
+**Upgrade协议的流程如下图：**
 
 ![connection upgrade](/static/libp2p/connection_upgrade.svg)
 
@@ -110,11 +116,11 @@ Libp2p支持的[公钥加密算法](https://github.com/libp2p/specs/blob/master/
 ip4/7.7.7.7/tcp/4242/p2p/QmYyQSo1c1Ym7orWxLYvCrM2EmxFTANf8wXmmE7DWjhx5N
 ```
 
-以上只列出了libp2p提供的部分功能，更多内容例如消息订阅、中继、NAT穿透等等可以参考相关[文档](https://docs.libp2p.io/concepts/)，使用libp2p开发点对点应用可以解决以上提到的大部分难题/技术点，节约大量的开发时间，增加系统的可维护性和可扩展性。使用libp2p的应用包括IPFS，Substrate/Polkadot，Libra，Ethereum 2.0等等，接下来我们来了解下Substrate如何使用的libp2p。
+以上只列出了libp2p提供的部分功能，更多内容例如消息订阅、中继、NAT穿透等等可以参考相关[文档](https://docs.libp2p.io/concepts/)，使用libp2p开发点对点应用可以解决以上提到的大部分难题和技术点，节约大量的开发时间，增加系统的可维护性和可扩展性。接下来，我们看一下如何使用rust-libp2p实现简单的自定义应用协议。
 
 ### 简单应用
 
-这里我们基于rust-libp2p，编写一个简单的点对点应用，可以完成回声（echo）的功能，即其中一个节点发送一个字符串，另一个节点接收该字符串并回复相同的字符串，这里我们需要自定义一个应用层的协议`EchoProtocol`，需要实现libp2p提供的`UpgradeInfo`接口，
+这里我们基于rust-libp2p，编写一个简单的点对点应用，可以完成回声（echo）的功能，即其中一个节点发送一个字符串，另一个节点接收该字符串并回复相同的字符，这里我们需要自定义一个应用层的协议`EchoProtocol`，需要实现libp2p提供的`UpgradeInfo`接口，
 
 ```rust
 #[derive(Default, Debug, Copy, Clone)]
@@ -324,7 +330,7 @@ where
 }
 ```
 
-我们还接着看`ProtocolsHandler::poll`里的实现，当outbound为Some，send_echo返回的future轮询的结果为`Poll::Pending`时，更行outbound为`self.outbound = Some(send_echo_future)`，保证下次轮询时依然有效，当结果为`Poll::Ready`时返回相应的事件信息。
+我们接着看`ProtocolsHandler::poll`里的实现，当outbound为Some，send_echo返回的future轮询的结果为`Poll::Pending`时，更新outbound为`self.outbound = Some(send_echo_future)`，保证下次轮询时依然有效，当结果为`Poll::Ready`时返回相应的事件信息。
 
 **当节点为listener**，连接中出现新的请求流时，自动调用`ProtocolsHandler::listen_protocol`返回一个`InboundUpgrade`的实例来协商流使用的协议。协商成功之后，调用`inject_fully_negotiated_inbound`，其中一个参数为协商好的stream，在该方法内，将handler的inbound属性状态更新为`Some(recv_echo(stream).boxed())`，`recv_echo`方法的实现为，
 
@@ -417,7 +423,7 @@ impl NetworkBehaviour for EchoBehaviour {
 
 当连接建立或者尝试去呼叫节点时会调用`new_handler`，返回我们之前定义的handler即`EchoHandler`，作为该连接的后台处理线程，behaviour和handler通过消息传递的机制进行通信，`inject_event`可以把handler的消息传给behaviour，behaviour在poll的时候返回`SendEvent`将消息传递给handler。
 
-到这里，我们已经完成了一个简单的echo点对点通信的协议，现在我们看一下main函数里如何使用。
+到这里，我们已经完成了一个简单的echo点对点通信协议，现在我们看一下main函数里如何使用。
 
 ```rust
 fn main() -> Result<(), Box<dyn Error>> {
@@ -488,12 +494,12 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 * 通过`Keypair::generate_ed25519`生成用于节点间通信加密的密钥，其中的公钥可以派生出节点的`PeerId`。
 * `libp2p::build_development_transport`构建了开发常用的传输层，支持TCP/IP、WebSocket，使用noise协议作为加密层，yamux和mplex多路复用协议。
-* 解析传入参与，如果包含呼叫的节点信息，则是dialer（客户端），将构造behaviour的初始参数`init_echo`设置为true。
+* 解析传入参数，如果包含呼叫的节点信息，则是dialer（客户端），将构造behaviour的初始参数`init_echo`设置为true。
 * 使用上面构造的传输层、behaviour、节点id，调用`Swarm::new(transport, behaviour, peer_id)`构造模拟网络的swarm。
 * 当节点为dialer时，呼叫传入的远端节点`Swarm::dial_addr(&mut swarm, remote)?`，将该节点加入swarm节点池中。
-* 对swarm进行轮询`swarm.poll_next_unpin(cx)`，如果有behaviour触发消息，处理对应的消息。
+* 对swarm进行轮询`swarm.poll_next_unpin(cx)`，如果有behaviour触发的消息，处理对应的消息。
 
-**小结**，libp2p对点对点通信进行了高度的抽象，在开始接触这些概念时，容易摸不着头脑，需要不断去熟悉划分的层次和常用的协议；rust-libp2p的实现，针对libp2p定义的层次和协议，封装出了不同的接口，在开发自定义协议的同时，需要深入去了解这些抽象的接口及接口间通信的方式。总体来说，点对点通信开发的难度比传统的客户端-服务器通信形式高很多，libp2p的设计在于弥合这其中的一些痛点，但也还有很长的路要走，应用开发者也需要更多的了解底层的机制才能更好的开发应用协议。
+**小结**，libp2p对点对点通信进行了高度的抽象，在开始接触这些概念时，容易摸不着头脑，需要不断去熟悉划分的层次和常用的协议；rust-libp2p的实现，针对libp2p定义的层次和协议，封装出了不同的接口，在开发自定义协议的同时，需要深入去了解这些抽象的接口及接口间通信的方式。总体来说，点对点通信开发的难度比传统的客户端-服务器通信形式高很多，libp2p的设计在于弥合这其中的一些痛点，但也还有很长的路要走，应用开发者需要更多地了解底层的机制才能更好的开发应用协议。目前，使用libp2p的应用包括IPFS，Substrate/Polkadot，Libra，Ethereum 2.0等等，接下来我们来了解下Substrate如何使用的libp2p。
 
 
 
@@ -514,11 +520,11 @@ fn main() -> Result<(), Box<dyn Error>> {
 * 自定义的[gossip协议](https://crates.parity.io/sc_network/index.html#substreams)（`/paritytech/grandpa/1`），GRANDPA用来通知其它节点相关的投票信息；
 * 自定义的[Substrate legacy协议](https://crates.parity.io/sc_network/index.html#the-legacy-substrate-substream)（`/substrate/<protocol-id>/<version>`），是一个即将被弃用的协议，它也可以同步、广播区块信息，处理轻客户端请求，Gossiping（被GRANDPA使用）等等。
 
-结合以上的底层和应用层通信协议，Substrate的节点之间可以通过三种发现机制方式建立起连接，
+结合以上的底层和应用层通信协议，Substrate的节点之间可以通过三种发现机制建立起连接，
 
 * 启动节点（bootstrap nodes），它的地址和PeerId都是固定的，适用于网络的冷启动和某节点刚加入网络时，通过启动节点进入到网络中；
 * [mDNS](https://github.com/libp2p/specs/blob/master/discovery/mdns.md)，在本地网络通过广播UDP数据包，如果有节点响应，则可以建立起连接；
-* Kademlia random walk，当连接建立后，当前节点可以通过`FIND_NODE` 请求远端节点，获取远端节点对当前网络中节点的视角。
+* Kademlia random walk，当连接建立后，当前节点可以通过`FIND_NODE` 请求远端节点，获取远端节点关于当前网络中节点组成的视角。
 
 以上的协议共同构成了Substrate的通用网络层，而这一网络层的使用是通过`NetworkWorker`和`NetworkService`结构体来实现的，在node template节点程序中的使用示例如下：
 
