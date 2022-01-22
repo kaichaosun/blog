@@ -1,7 +1,7 @@
 
 ---
 date: 2022-01-21
-title: 你的元宇宙会不会把我从 “一条人” 变成 “一条狗”？
+title: 元宇宙会不会把我们从一条人变成一条狗？
 tags: ["Thoughts","Decentralization"]
 categories: ["Thoughts","Blockchain"]
 ---
