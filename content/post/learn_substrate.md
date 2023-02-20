@@ -60,11 +60,11 @@ Substrate本身以及基于Substrate的应用链的开发都使用的是Rust语�
 
 日常获取相关资料的快捷链接：https://subdev.cn/
 
-重要的内容都在 [substrate.dev](https://substrate.dev) 网站上，比如：
+重要的内容都在 [substrate.io](https://substrate.io) 网站上，比如：
 
-* 详细的官方指导文档 https://substrate.dev/docs/en/，比如安装方法、常用的概念和开发指导，首先在整体上熟悉下内容结构，在用到的时候知道在哪里找。一有时间就从前往后读每一节的内容，遇到不理解的可以搜索Google或者先记下跳过，之后在问。
-* 不同的教程 https://substrate.dev/en/tutorials，练习的先后顺序建议是：[Create Your First Substrate Chain](https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/) -> [Build a PoE Decentralized Application](https://substrate.dev/docs/en/tutorials/build-a-dapp/)，然后是其它的教程。
-* 针对单一知识点的代码片段和讲解 https://substrate.dev/recipes/，也是先熟悉内容结构，用到的时候回来查找。
+* 详细的官方指导文档 https://docs.substrate.io/，比如安装方法、常用的概念和开发指导，首先在整体上熟悉下内容结构，在用到的时候知道在哪里找。一有时间就从前往后读每一节的内容，遇到不理解的可以搜索Google或者先记下跳过，之后在问。
+* 不同的教程 https://substrate.io/en/tutorials，练习的先后顺序建议是：[Create Your First Substrate Chain](https://docs.substrate.io/tutorials/get-started/) -> [Build a Decentralized Application](https://docs.substrate.io/tutorials/collectibles-workshop/)，然后是其它的教程。
+* 针对单一知识点的代码片段和讲解 https://substrate.recipes/，也是先熟悉内容结构，用到的时候回来查找。
 * JS sdk 官方文档[polkadot-js/api](https://polkadot.js.org/api/)，当需要编写前端UI界面时，需要深入学习此文档。
 
 中文的技术资料主要是技术文章和视频，这些内容通常是针对某一个概念或者教程，空闲时间可以多看看：
@@ -75,12 +75,12 @@ Substrate本身以及基于Substrate的应用链的开发都使用的是Rust语�
 和Substrate核心开发者以及众多的社区技术爱好者互动的渠道有：
 
 * 官方技术支持 Riot 群 [Substrate Technical (Public)](https://matrix.to/#/!HzySYSaIhtyWrwiwEV:matrix.org?via=matrix.parity.io&via=matrix.org&via=web3.foundation)
-* 每周的技术研讨会 https://substrate.dev/en/seminar
+* 每周的技术研讨会 https://substrate.io/en/seminar
 * 中文Substrate技术交流 Riot 群 [China Substrate Dev](https://matrix.to/#/!trdlqNGrCsZpYUZoXa:matrix.parity.io?via=matrix.parity.io&via=matrix.org&via=web3.foundation)
 
 在这些聊天群里，大家可以提问题，参与讨论，通常会很快获得想要的答案和知识。
 
-另外一些比较重要，但相对深入的资料有[StackOverflow关于Substrate的问答](https://stackoverflow.com/questions/tagged/substrate)、[Substrate的Rust实现文档](https://substrate.dev/rustdocs/)、[源代码](https://github.com/paritytech/substrate)，在用到的时候搜索就可以了。
+另外一些比较重要，但相对深入的资料有[StackOverflow关于Substrate的问答](https://stackoverflow.com/questions/tagged/substrate)、[Substrate的Rust实现文档](https://substrate.io/rustdocs/)、[源代码](https://github.com/paritytech/substrate)，在用到的时候搜索就可以了。
 
 
 ## 学习路径分享
@@ -91,8 +91,8 @@ Substrate本身以及基于Substrate的应用链的开发都使用的是Rust语�
 
 建议的学习路径是：
 
-* 首先尝试这两个教程[Create Your First Substrate Chain](https://substrate.dev/docs/en/tutorials/create-your-first-substrate-chain/) -> [Build a PoE Decentralized Application](https://substrate.dev/docs/en/tutorials/build-a-dapp/)，另外一个[加密猫的教程](https://www.shawntabrizi.com/substrate-collectables-workshop/#/)也可以学习下（版本更新可能不及时）；
-* 在练习教程的同时，熟悉substrate.dev和其它中文频道上的各项资料，通过上面提供的资料，了解substrate常用的概念如runtime、宏等；
+* 首先尝试这两个教程[Create Your First Substrate Chain](https://substrate.io/docs/en/tutorials/create-your-first-substrate-chain/) -> [Build a PoE Decentralized Application](https://substrate.io/docs/en/tutorials/build-a-dapp/)，另外一个[加密猫的教程](https://www.shawntabrizi.com/substrate-collectables-workshop/#/)也可以学习下（版本更新可能不及时）；
+* 在练习教程的同时，熟悉substrate.io和其它中文频道上的各项资料，通过上面提供的资料，了解substrate常用的概念如runtime、宏等；
 * 对遇到的问题先尝试搜索已有的资料，如果没有找到，在相应的聊天频道里获取帮助，也可以积极的观察和参与其他人的讨论；
 * 完成教程之后，就可以结合自己的兴趣、工作需要，编写自己的感兴趣的区块链功能；
 
@@ -105,8 +105,8 @@ Substrate本身以及基于Substrate的应用链的开发都使用的是Rust语�
 
 一个区块链应用想要被用户接受，必须有一个用户体验良好的前端体验。前端开发者可以这样学习：
 
-* 尝试[Build a PoE Decentralized Application 教程的前端部分](https://substrate.dev/docs/en/tutorials/build-a-dapp/front-end)；
-* 了解Substrate的[前端生态](https://substrate.dev/docs/en/knowledgebase/integrate/polkadot-js)和[官方Polkadot-JS 文档](https://polkadot.js.org/api/start/)，对文档中的代码进行练习，熟练掌握前端的开发模式和常用的API；
+* 尝试[Build a PoE Decentralized Application 教程的前端部分](https://substrate.io/docs/en/tutorials/build-a-dapp/front-end)；
+* 了解Substrate的[前端生态](https://substrate.io/docs/en/knowledgebase/integrate/polkadot-js)和[官方Polkadot-JS 文档](https://polkadot.js.org/api/start/)，对文档中的代码进行练习，熟练掌握前端的开发模式和常用的API；
 * 根据自己的区块链runtime逻辑，编写自定义的UI。
 
 ## 总结
