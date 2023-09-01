@@ -57,6 +57,7 @@ paginate = 11
 [social]
     twitter  = "https://twitter.com/kaichaosun"
     github   = "https://github.com/kaichaosun"
+    telegram = "https://t.me/kaichaosun"
 
 [taxonomies]
   	category = "categories"
