@@ -120,6 +120,11 @@ git reset origin/master --hard
 git rebase -i commit-id // p to pick, r to change msg
 ```
 
+**Rebase to origin after squashed merge**
+```shell
+git rebase -i origin/main
+```
+
 ** Delete branch with illegal name:**
 ```shell
 git branch -D -- --track
