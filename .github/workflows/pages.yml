@@ -23,14 +23,9 @@ jobs:
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        EXTERNAL_REPOSITORY: username/external-repository
-        PUBLISH_BRANCH: master
-        PUBLISH_DIR: ./public
       with:
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        external_repository: 'kaichaosun/kaichaosun.github.io'
+        external_repository: kaichaosun/kaichaosun.github.io
         publish_branch: master
-        allow_empty_commit: true
+        publish_dir: ./public
         commit_message: ${{ github.event.head_commit.message }}
