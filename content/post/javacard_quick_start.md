@@ -3,7 +3,6 @@ date: 2023-05-20
 title: Javacard quick start
 tags: ["Smartcard", "Javacard"]
 categories: ["IoT", "Blockchain"]
-draft: true
 ---
 
 ## Prerequisites
