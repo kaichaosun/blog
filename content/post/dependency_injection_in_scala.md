@@ -2,7 +2,7 @@
 date: 2019-01-17
 title: Dependency Injection in Scala
 tags: ["FP", "Scala"]
-categories: ["Functional Programming"]
+categories: ["FP"]
 ---
 
 ## What's Dependency Injection

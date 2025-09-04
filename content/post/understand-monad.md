@@ -2,7 +2,7 @@
 date: 2018-10-13
 title: Understand Monad in Functional Programming
 tags: ["FP", "Scala"]
-categories: ["Functional Programming"]
+categories: ["FP"]
 ---
 
 ## Why Functional Programming?

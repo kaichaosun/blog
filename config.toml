@@ -18,7 +18,7 @@ paginate = 11
 	bio = "Enthuse about FP, DLT."
 	# Enter optionally your twitter account
 	twitter = "kaichaosun"
-	enableRSS = false
+	enableRSS = true
 	enableEmailSubscription = true
 
 	# Integrate Javascript files or stylesheets by adding the url to the external assets or by
@@ -62,3 +62,11 @@ paginate = 11
 [taxonomies]
   	category = "categories"
   	tag = "tags"
+
+[outputFormats]
+  [outputFormats.RSS]
+	mediatype = "application/rss+xml"
+	baseName = "index"
+	isPlainText = false
+	notAlternative = false
+	permalinkable = true
