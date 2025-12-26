@@ -1,0 +1,26 @@
+{{ define "main" }}
+<section id="main">
+    <div>
+        <h1 id="title">{{ .Title }}</h1>
+        {{ .Content }}
+
+        <!-- Cards Grid -->
+        <div class="cards-grid">
+            {{ range $.Site.Data.apps }}
+            <div class="app-card" onclick="window.open('{{ .url }}', '_blank')">
+              <div class="app-card-inner">
+                {{ if .icon }}
+                <img src="{{ .icon }}" alt="{{ .name }} icon" class="app-icon" loading="lazy">
+                {{ end }}
+                <h3>{{ .name }}</h3>
+                <p>{{ .description }}</p>
+                {{ if .category }}
+                <span class="category">{{ .category }}</span>
+                {{ end }}
+              </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}

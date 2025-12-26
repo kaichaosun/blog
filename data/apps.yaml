@@ -1,0 +1,6 @@
+- name: Zed
+  description: High-performance, multiplayer code editor built in Rust, with AI integration and real-time collaboration.
+  url: https://zed.dev
+  icon: /apps/zed.png
+  category: Programming
+# Add as many as you want...
