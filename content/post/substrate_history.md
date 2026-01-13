@@ -59,24 +59,24 @@ Substrate所有的组件代码都是开源的，已经有超过300名开发者�
 
 ### Idea
 
-提到 Substrate，不得不先说说 Polkadot，它的愿景是一个多链的未来。
+提到 Substrate，它的愿景是一个多链的未来。
 
 那既然需要很多条链，自然需要一个灵活高效的脚手架。
 
-在2018年初，parity 核心开发从原来的Polkadot代码库分离出 Substrate，里面包含了 Polkadot 用到的所有底层组件。
+在2018年初，parity 核心开发分离出 Substrate，里面包含了所有底层组件。
 
 
 ### Web3 Summit Demo
 
 在2018年 Web3 Summit 会议上， Gav用一台全新的电脑上，演示了如何使用Substrate在十几分钟内搭建了一个包含客户端、ui的区块链应用，这个应用是模拟一个简单的抛硬币游戏。
 
-从这以后，Substrate也正式从Polkadot的底层库，转变成一个通用、开源的基于 Rust 编程语言的区块链开发框架。
+从这以后，Substrate也正式转变成一个通用、开源的基于 Rust 编程语言的区块链开发框架。
 
 ### Evolved with Polkadot
 
-Substrate技术演进的一个主要推动力是Polkadot跨链协议的设计，为它提供了一系列的基础功能和核心业务组件，我们之前也提到了这些组件。
+Substrate技术演进的一个主要推动力是跨链协议的设计，为它提供了一系列的基础功能和核心业务组件，我们之前也提到了这些组件。
 
-Substrate不仅要满足Polkadot的需要，同时也一步步添加了各种区块链开发时所需要的一系列新功能，例如
+Substrate 一步步添加了各种区块链开发时所需要的一系列新功能，例如
 
 * 多种共识引擎，
 * 开发 runtime 所需的API接口，
@@ -138,7 +138,7 @@ Substrate不仅要满足Polkadot的需要，同时也一步步添加了各种区
 * 优化治理模块，不需要过多依赖 Council ，实现更加高效的去中心治理模式。
 * 完善smoldot轻客户端和它的生态，让更多用户在浏览器使用轻客户端访问区块链网络。
 * bootnodes 查找和发现机制，在节点启动的时候查找 bootnode, 不需要硬编码在chainspec文件里。
-* 还有一个不是和代码相关的，也让人很期待，今年会有一个官方的高标准的教育计划，针对Substrate和Polkadot的技术栈。
+* 还有一个不是和代码相关的，也让人很期待，今年会有一个官方的高标准的教育计划，针对Substrate的技术栈。
 
 更多更新，大家可以去关注Parity的代码仓库和社交账户。
 
@@ -146,4 +146,3 @@ Substrate不仅要满足Polkadot的需要，同时也一步步添加了各种区
 知乎专栏: parity.link/zhihu
 
 欢迎大家在 twitter 上跟我交流， id是kaichaosun。
-

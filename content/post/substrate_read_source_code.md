@@ -9,7 +9,7 @@ categories: ["Blockchain"]
 * 从frame下的感兴趣的pallet开始，比如资产相关的balance, assets; 治理相关的democracy, membership, collective.
   * 模块做什么用，提供了哪些存储和可调用函数
   * 本模块和其它模块如何实现的交互
-  * 如何在kusama/polkadot/substrate node/substrate node template的runtime中使用的
+  * 如何在substrate node/substrate node template的runtime中使用的
   * 理解为什么在链上需要这样的模块或者逻辑
 * 对frame的功能有一定了解之后，可以去探索更加底层的知识和架构，比如
   * runtime 模块里对存储单元的操作如何反应在数据库中的

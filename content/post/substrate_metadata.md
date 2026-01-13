@@ -71,7 +71,7 @@ Before we dive into more detail, let's have a quick look at what information is 
 
 > Here we are using `V4` of the runtime metadata. Go to [its reference document](https://substrate.dev/rustdocs/v1.0/srml_metadata/enum.RuntimeMetadata.html) for more versioning information.
 
-The metadata of an entire runtime is an array of its modules' metadata, including all SRML and custom runtime modules in your blockchain. You can also find [the decoded metadata](https://github.com/polkadot-js/api/blob/master/packages/types/src/Metadata/v4/latest.substrate.v4.json) of all build-in modules in Polkadot-js/api.
+The metadata of an entire runtime is an array of its modules' metadata, including all SRML and custom runtime modules in your blockchain. You can also find [the decoded metadata](https://github.com/polkadot-js/api/blob/master/packages/types/src/Metadata/v4/latest.substrate.v4.json) of all build-in modules in js/api.
 
 Now let's walk through each field in module's metadata:
 

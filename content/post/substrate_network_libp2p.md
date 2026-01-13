@@ -499,7 +499,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 * 当节点为dialer时，呼叫传入的远端节点`Swarm::dial_addr(&mut swarm, remote)?`，将该节点加入swarm节点池中。
 * 对swarm进行轮询`swarm.poll_next_unpin(cx)`，如果有behaviour触发的消息，处理对应的消息。
 
-**小结**，libp2p对点对点通信进行了高度的抽象，在开始接触这些概念时，容易摸不着头脑，需要不断去熟悉划分的层次和常用的协议；rust-libp2p的实现，针对libp2p定义的层次和协议，封装出了不同的接口，在开发自定义协议的同时，需要深入去了解这些抽象的接口及接口间通信的方式。总体来说，点对点通信开发的难度比传统的客户端-服务器通信形式高很多，libp2p的设计在于弥合这其中的一些痛点，但也还有很长的路要走，应用开发者需要更多地了解底层的机制才能更好的开发应用协议。目前，使用libp2p的应用包括IPFS，Substrate/Polkadot，Libra，Ethereum 2.0等等，接下来我们来了解下Substrate如何使用的libp2p。
+**小结**，libp2p对点对点通信进行了高度的抽象，在开始接触这些概念时，容易摸不着头脑，需要不断去熟悉划分的层次和常用的协议；rust-libp2p的实现，针对libp2p定义的层次和协议，封装出了不同的接口，在开发自定义协议的同时，需要深入去了解这些抽象的接口及接口间通信的方式。总体来说，点对点通信开发的难度比传统的客户端-服务器通信形式高很多，libp2p的设计在于弥合这其中的一些痛点，但也还有很长的路要走，应用开发者需要更多地了解底层的机制才能更好的开发应用协议。目前，使用libp2p的应用包括IPFS，Substrate，Libra，Ethereum 2.0等等，接下来我们来了解下Substrate如何使用的libp2p。
 
 
 
@@ -562,4 +562,3 @@ let (network, network_status_sinks, system_rpc_tx, network_starter) =
 [Libp2p specification](https://github.com/libp2p/specs)
 
 [Textile's primer on libp2p](https://blog.textile.io/a-primer-on-libp2p/)
-

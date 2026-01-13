@@ -70,7 +70,7 @@ Substrate作为一个通用的区块链应用开发框架，充分考虑了上�
 
 ### 基本费用
 
-即[TransactionBaseFee](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee)，是每笔交易（特例请参考下面，通过pays_fee设置无付费的交易）都需支付的费用，定义在transaction-payment模块中，在runtime初始化时进行[配置](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs#L190)，并可以随着runtime的升级进行更新。基本费用的合理设置，可以有效的减少垃圾交易，例如[Kusama网络](https://kusama.network/)的基本费用目前设置为 0.01 ksm。
+即[TransactionBaseFee](https://substrate.dev/rustdocs/master/pallet_transaction_payment/trait.Trait.html#associatedtype.TransactionBaseFee)，是每笔交易（特例请参考下面，通过pays_fee设置无付费的交易）都需支付的费用，定义在transaction-payment模块中，在runtime初始化时进行[配置](https://github.com/paritytech/substrate/blob/master/bin/node/runtime/src/lib.rs#L190)，并可以随着runtime的升级进行更新。基本费用的合理设置，可以有效的减少垃圾交易。
 
 ### 字节费用
 
@@ -80,14 +80,14 @@ Substrate作为一个通用的区块链应用开发框架，充分考虑了上�
 字节费用 = 每字节费用 * 字节数
 ```
 
-和基本费用相同的是，每字节费用也是配置在可升级的runtime代码中。字节数的计算是按照交易的结构体通过[SCALE编码](https://substrate.dev/docs/en/conceptual/core/codec)之后的长度，应用开发者无需过多的关注。以Kusama网络为例，相关的设置如下：
+和基本费用相同的是，每字节费用也是配置在可升级的runtime代码中。字节数的计算是按照交易的结构体通过[SCALE编码](https://substrate.dev/docs/en/conceptual/core/codec)之后的长度，应用开发者无需过多的关注。
 
 * 最大区块长度：5MB
 * 每字节费用：0.0001 ksm
 
 ### 权重费用
 
-在有限的区块生成时间和链上状态的限制下，权重被用来定义交易产生的计算复杂度即所消耗的计算资源，以及占据的链上状态。system模块定义了[区块的总权重（MaximumBlockWeight）](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight)。为了保证在网络繁忙的情况下，依然能够实现对区块链应用有效合理的管理，Substrate引入了两种不同级别的交易类型，既 [Normal 和 Operational](https://substrate.dev/rustdocs/master/frame_support/weights/enum.DispatchClass.html)。Normal类型的交易是由网络中的普通用户提交，Operational类型的交易是由网络中的管理员或者管理委员会共同触发。区块资源如**长度**和**总权重**按照一定比例在这两种类型的交易中进行分配，这一比例称为[可用区块比（AvailableBlockRatio）](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio)。Kusama网络的设置为：
+在有限的区块生成时间和链上状态的限制下，权重被用来定义交易产生的计算复杂度即所消耗的计算资源，以及占据的链上状态。system模块定义了[区块的总权重（MaximumBlockWeight）](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.MaximumBlockWeight)。为了保证在网络繁忙的情况下，依然能够实现对区块链应用有效合理的管理，Substrate引入了两种不同级别的交易类型，既 [Normal 和 Operational](https://substrate.dev/rustdocs/master/frame_support/weights/enum.DispatchClass.html)。Normal类型的交易是由网络中的普通用户提交，Operational类型的交易是由网络中的管理员或者管理委员会共同触发。区块资源如**长度**和**总权重**按照一定比例在这两种类型的交易中进行分配，这一比例称为[可用区块比（AvailableBlockRatio）](https://substrate.dev/rustdocs/master/frame_system/trait.Trait.html#associatedtype.AvailableBlockRatio)。
 
 * 区块的总权重：1,000,000,000
 * 可用区块比：75%，即Normal交易最多只占用75%的区块资源，Operational类型的交易则可以占用100%的区块资源，新的交易如果导致对应资源使用率超过阈值后，会被拒绝。
@@ -185,14 +185,14 @@ fn f12(_origin, _a: u32, _eb: u32) { unimplemented!(); }
 
 **注意**：合理的权重值需要通过性能测试来获取，可以参考[PR Weight annotation](https://github.com/paritytech/substrate/pull/3157)；可调用函数的文档中也要明确给出复杂度的计算公式，有多少存储类操作等。
 
-**权重值需要转换为权重费用**，transaction-payment 模块中给出了转换方式的定义[WeightToFee](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs#L71)，在runtime模块初始化时给出具体的实现代码，例如在Kusama网路，[WeightToFee的实现](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/impls.rs#L78-L95)为：
+**权重值需要转换为权重费用**，transaction-payment 模块中给出了转换方式的定义[WeightToFee](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs#L71)，在runtime模块初始化时给出具体的实现代码，[WeightToFee的实现](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/impls.rs#L78-L95)为：
 
 ```rust
 pub struct WeightToFee;
 
 impl Convert<Weight, Balance> for WeightToFee {
     fn convert(x: Weight) -> Balance {
-      	// in Polkadot a weight of 10_000 (smallest non-zero weight) to be mapped to 10^7 units of
+      	// weight of 10_000 (smallest non-zero weight) to be mapped to 10^7 units of
       	// fees (1/10 CENT), hence:
       	Balance::from(x).saturating_mul(1_000)
     }
@@ -203,7 +203,7 @@ impl Convert<Weight, Balance> for WeightToFee {
 
 ### 动态调节费率
 
-节点的runtime代码中，需要配置`TargetBlockFullness`参数，通常为25%，即在网络平稳运行的过程中，区块资源的使用比例应该稳定在25%左右。当当前区块资源使用超过25%时，将下一区块动态调节费率设置为正，增加交易费用；当资源使用率不足25%时，将下一区块的动态调节费率设置为负，减少交易费用，鼓励交易的发生。这一规则的实现依赖transaction-payment模块的[FeeMultiplierUpdate](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs#L74)，Kusama对应的实现代码请参考[这里](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/impls.rs#L97-L149)。
+节点的runtime代码中，需要配置`TargetBlockFullness`参数，通常为25%，即在网络平稳运行的过程中，区块资源的使用比例应该稳定在25%左右。当当前区块资源使用超过25%时，将下一区块动态调节费率设置为正，增加交易费用；当资源使用率不足25%时，将下一区块的动态调节费率设置为负，减少交易费用，鼓励交易的发生。这一规则的实现依赖transaction-payment模块的[FeeMultiplierUpdate](https://github.com/paritytech/substrate/blob/master/frame/transaction-payment/src/lib.rs#L74)，对应的实现代码请参考[这里](https://github.com/paritytech/polkadot/blob/master/runtime/common/src/impls.rs#L97-L149)。
 
 
 

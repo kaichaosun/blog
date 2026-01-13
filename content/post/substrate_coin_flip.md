@@ -87,13 +87,13 @@ ously 0x2d84be81477309b475af22c457f850174c498d1b0d19032f18fe7f7656233dad.
 * Current block: `best: #1 (0x1d70…5302)`.
 * Current finalized block: `finalized #0 (0xacb5…bb17)`。一直显示 `0` 是由于 **Template Node** 并没有引入最终性模块 [GRANDPA finality gadget](https://wiki.polkadot.network/en/latest/polkadot/learn/consensus/#what-is-grandpababe)。
 
-> Substrate 默认的共识机制是基于BABE和GRANDPA的混合共识，详细信息参考[Polkadot Consensus](https://wiki.polkadot.network/en/latest/polkadot/learn/consensus/)。
+> Substrate 默认的共识机制是基于BABE和GRANDPA的混合共识，详细信息参考[Consensus](https://wiki.polkadot.network/en/latest/polkadot/learn/consensus/)。
 
 启动之后，你就拥有了一个由单个节点维护的"区块链"网络。下面我们通过UI与刚创建的节点进行交互。
 
 ### 节点交互
 
-Substrate生态里提供了一个UI工具 [Polkadot/Substrate UI](https://github.com/polkadot-js/apps) 来帮助开发者与Substrate编写的区块链进行交互。你可以根据项目README的指示在本地运行，或者访问官方host的网页应用，链接为：https://polkadot.js.org/apps。
+Substrate生态里提供了一个UI工具 [Substrate UI](https://github.com/polkadot-js/apps) 来帮助开发者与Substrate编写的区块链进行交互。你可以根据项目README的指示在本地运行，或者访问官方host的网页应用，链接为：https://polkadot.js.org/apps。
 
 在 **Settings**页面，配置`remote node`为之前所说的WebSocket端口`127.0.0.1:9944`。保存配置后，会有更多的功能在侧边栏出现，供大家使用。
 
@@ -183,7 +183,7 @@ cargo build --release
 ./target/release/demo-node --dev
 ```
 
-请通过 [Polkadot/Substrate UI](https://github.com/polkadot-js/apps) 简单测试一下新创建模块的功能。
+请通过 [Substrate UI](https://github.com/polkadot-js/apps) 简单测试一下新创建模块的功能。
 
 ### 添加业务功能
 
@@ -401,7 +401,7 @@ fn play(origin) -> Result {
 
 ## 总结
 
-现在已经完成了所有的代码，可以进行简单的测试。同样地，访问 [Polkadot/Substrate UI](https://github.com/polkadot-js/apps) 在Extrinsics页面中调用上面定义的函数；之后在Chain state页面查询对应的存储项。遇到问题可以参考这里的 [“抛硬币”完整代码](https://github.com/shawntabrizi/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/demo.rs)。
+现在已经完成了所有的代码，可以进行简单的测试。同样地，访问 [Substrate UI](https://github.com/polkadot-js/apps) 在Extrinsics页面中调用上面定义的函数；之后在Chain state页面查询对应的存储项。遇到问题可以参考这里的 [“抛硬币”完整代码](https://github.com/shawntabrizi/substrate-package/blob/gav-demo/substrate-node-template/runtime/src/demo.rs)。
 
 后续文章将会介绍如何添加测试和编写UI。更多内容请关注，
 

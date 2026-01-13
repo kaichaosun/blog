@@ -176,6 +176,3 @@ Substrate官方文档：[https://substrate.dev/](https://substrate.dev/)
 Parity介绍：[https://www.parity.io/](https://www.parity.io/)
 
 Substrate源码：[https://github.com/paritytech/substrate](https://github.com/paritytech/substrate)
-
-Polkadot源码：[https://github.com/paritytech/polkadot](https://github.com/paritytech/polkadot)
-

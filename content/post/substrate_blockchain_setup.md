@@ -29,7 +29,7 @@ categories: ["Blockchain"]
 
 [Substrate](https://github.com/paritytech/substrate)是由德国[Parity](https://github.com/paritytech/substrate)公司推出的一个**区块链构建框架**。它实现了区块链开发领域中所遇到的大部分通用功能，比如点对点网络连接，可配置的共识算法，常用加密算法，数据库存储，交易管理等。通过使用Substrate，使普通的软件开发人员可以在短时间内建立一条**属于自己的完整区块链**，开发者只需要关注自己的业务逻辑，从底层复杂的技术中解放出来。
 
-使用Substrate构建的区块链，有一个额外的好处，就是可以轻易地连接到Parity的Polkadot公链网络，这一网络具有很多优势，比如**跨链交易**、**共享安全**等。
+使用Substrate构建的区块链，有一个额外的好处，就是可以轻易地连接到Parity的公链网络，这一网络具有很多优势，比如**跨链交易**、**共享安全**等。
 
 Substrate是由Rust语言开发，而Rust最为一门高级静态编程语言，具有诸多优势，如内存安全、类型检查、支持编译为WASM、函数式友好、社区资料完善等优点。通过借助Rust的优良特性，也使得Substrate的性能优良、可读性高。
 
@@ -303,4 +303,3 @@ Substrate区块链的初始启动信息在`chainspec`的json文件中维护着�
 ## 参考资料
 
 - [Start a Private Network with Substrate](https://docs.substrate.dev/docs/deploying-a-substrate-node-chain)
-
