@@ -3,4 +3,29 @@
   url: https://zed.dev
   icon: /apps/zed.png
   category: Programming
+- name: Atom
+  description: The hackable text editor for the 21st century — endlessly customizable and approachable.
+  url: https://atom-editor.cc
+  icon: /apps/atom.png
+  category: Programming
+- name: iTerm2
+  description: A powerful terminal emulator for macOS with split panes, search, and smart selection.
+  url: https://iterm2.com
+  icon: /apps/iterm.png
+  category: Terminal
+- name: Ghostty
+  description: A fast, feature-rich terminal emulator with native UI and GPU acceleration.
+  url: https://ghostty.org
+  icon: /apps/ghostty.png
+  category: Terminal
+- name: Google Chrome
+  description: Fast, secure web browser with a vast extension ecosystem and great devtools.
+  url: https://www.google.com/chrome/
+  icon: /apps/chrome.png
+  category: Browser
+- name: Brave
+  description: Privacy-first browser that blocks ads and trackers by default.
+  url: https://brave.com
+  icon: /apps/brave.png
+  category: Browser
 # Add as many as you want...

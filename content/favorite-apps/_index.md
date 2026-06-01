@@ -1,8 +1,9 @@
 +++
-title = "Favorite Apps"
+title = "Tools"
 date = "2025-12-26"
-menu = "main"
 hidden = true
+[menu.main]
+  weight = 20
 +++
 
-Here are some of my favorite apps and tools.
+Tools I love and use every day.

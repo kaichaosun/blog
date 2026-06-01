@@ -1,10 +1,12 @@
 <nav class="main-nav">
-	{{ if not .IsHome }}
-		<a href='{{ .Site.BaseURL }}'> <span class="arrow">←</span>{{ .Site.Params.home | default "Home" }}</a>
-	{{ end }}
+	<a href='{{ "/" | relURL }}'> {{ if not .IsHome }}<span class="arrow">←</span>{{ end }}{{ .Site.Params.home | default "Home" }}</a>
 
 	{{ range .Site.Menus.main }}
+ 		{{ if eq .Name "Products" }}
+ 		<a href='{{ .URL }}' class="nav-highlight">{{ .Name }}<span class="nav-badge">New</span></a>
+ 		{{ else }}
  		<a href='{{ .URL }}'>{{ .Name }}</a>
+ 		{{ end }}
   	{{ end }}
 
 	<!-- <a href="/resume">Resume</a> -->
