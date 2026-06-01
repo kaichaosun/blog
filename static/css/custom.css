@@ -16,6 +16,17 @@ body {
     margin-top: 2rem;
 }
 
+/* Products page: single column on mobile, exactly 2 per row on wider screens */
+.products-grid {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 .app-card {
     background: #fff;
     border: 1px solid #eee;

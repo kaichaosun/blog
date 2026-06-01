@@ -1,0 +1,16 @@
+- name: MarkdownSync
+  description: Google Docs for Markdown. A local-first, real-time collaborative editor, edit offline, share a link, and co-author with live cursors.
+  url: https://markdownsync.com
+  icon: /products/markdownsync.png
+  category: Productivity
+- name: Movedone
+  description: Move work to done. A beautiful, privacy-first Kanban app with built-in AI assistance, sync your boards across devices and collaborate with your team.
+  url: https://movedone.ai
+  icon: /products/movedone.png
+  category: Productivity
+- name: Keyring Wallet
+  description: A secure and handy hardware wallet in a card. Tap your phone to sign and manage EVM blockchains on iOS, Android, and Desktop.
+  url: https://keyring.so
+  icon: /products/keyring.png
+  category: Web3
+# Add as many as you want...
