@@ -9,6 +9,14 @@ body {
   flex-direction: column;
 }
 
+/* The flex column above makes auto-margin children (#wrapper, nav) shrink to
+   their content width instead of filling. Force full width (still capped by
+   max-width) so every page — home, category, tag — keeps the same width. */
+#wrapper,
+nav.main-nav {
+  width: 100%;
+}
+
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -114,4 +122,62 @@ body {
   background: #e6f4ea;
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
+}
+
+/* ---- Navbar: flex layout so items wrap cleanly instead of overlapping ---- */
+nav.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  row-gap: 8px; /* keeps wrapped rows from colliding on small screens */
+}
+
+/* Hover effect for the plain nav links */
+nav.main-nav a {
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+nav.main-nav a:not(.cta):hover {
+  color: #2780d6;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 2px;
+}
+
+/* Subscribe / RSS call-to-action buttons — smaller and tighter than the
+   plain links so they read as compact buttons, not oversized blocks. */
+nav.main-nav a.cta {
+  padding: 5px 12px;
+  margin-left: 8px;
+  font-size: 16px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(91, 173, 240, 0.35);
+}
+
+nav.main-nav a.cta:hover {
+  background: #3f97e0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(91, 173, 240, 0.45);
+}
+
+/* Mobile: center the row and tighten spacing so nothing overflows */
+@media (max-width: 540px) {
+  nav.main-nav {
+    justify-content: center;
+    column-gap: 2px;
+  }
+
+  nav.main-nav a {
+    padding: 6px 10px;
+    font-size: 16px;
+  }
+
+  nav.main-nav a.cta {
+    margin-left: 4px;
+  }
 }
