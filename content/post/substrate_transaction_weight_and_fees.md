@@ -1,6 +1,6 @@
 ---
 date: 2020-02-21
-title: Substrate 区块链应用的交易费用设计
+title: 区块链应用的交易费用设计
 tags: ["Blockchain", "Substrate"]
 categories: ["Blockchain"]
 ---

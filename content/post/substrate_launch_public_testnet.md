@@ -1,6 +1,6 @@
 ---
 date: 2020-07-17
-title: Substrate 部署公开测试网络
+title: 使用 Substrate 部署公开测试网络
 tags: ["Blockchain", "Substrate"]
 categories: ["Blockchain"]
 ---

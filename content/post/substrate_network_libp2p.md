@@ -1,7 +1,7 @@
 
 ---
 date: 2021-02-08
-title: Substrate 如何使用 libp2p 进行点对点通信
+title: 如何使用 libp2p 进行点对点通信
 tags: ["Blockchain", "Substrate"]
 categories: ["Blockchain"]
 ---

@@ -6,7 +6,7 @@ hidden = true
   weight = 30
 +++
 
-As a Backend Developer, I have comprehensive technical skill set and expertise around web development, microservice design, functional programming, CI/CD, cloud computing, TDD, etc. I enjoy working in an agile team. Remote work is another lifestyle I want to give a try. Currently, I’m focusing on Functional Programming and Distributed Ledger Technology, especially [Substrate](https://github.com/paritytech/substrate). Coding in the quiet makes me feel great.
+As a Backend Developer, I have comprehensive technical skill set and expertise around web development, microservice design, functional programming, CI/CD, cloud computing, TDD, etc. I enjoy working in an agile team. Remote work is another lifestyle I want to give a try. Currently, I’m focusing on local first software and decentralized network. Coding in the quiet makes me feel great.
 
 ***
 
