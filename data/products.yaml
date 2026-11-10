@@ -3,6 +3,11 @@
   url: https://markdownsync.com
   icon: /products/markdownsync.png
   category: Productivity
+- name: 成章
+  description: AI voice assistant that help you write and control digital world. Press a shortcut, talk, and your words appear at the cursor on Mac, Windows, and Linux.
+  url: https://movedone.cn
+  icon: /products/chengzhang.png
+  category: AI
 - name: Movedone
   description: Move work to done. A beautiful, privacy-first Kanban app with built-in AI assistance, sync your boards across devices and collaborate with your team.
   url: https://movedone.ai
