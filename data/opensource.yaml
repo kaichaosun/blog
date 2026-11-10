@@ -1,0 +1,10 @@
+- name: rlt
+  description: Local tunnel implementation in Rust. Expose a local API or web server to the public internet with a single command.
+  url: https://github.com/kaichaosun/rlt
+  icon: /apps/github.svg
+  category: Networking
+- name: swa
+  description: Self-hosted website analytics with SQLite. Lightweight, privacy-friendly traffic insights you can run on your own server.
+  url: https://github.com/kaichaosun/swa
+  icon: /apps/github.svg
+  category: Analytics
